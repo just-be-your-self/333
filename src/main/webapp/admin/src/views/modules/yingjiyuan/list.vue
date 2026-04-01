@@ -303,7 +303,7 @@ export default {
 	}
 	
 	// form
-	.center-form-pv .el-input /deep/ .el-input__inner {
+	.center-form-pv .el-input ::v-deep .el-input__inner {
 				border: 1px solid #e5e5e5;
 				border-radius: 20px 40px;
 				padding: 0 12px;
@@ -315,7 +315,7 @@ export default {
 				height: 40px;
 			}
 	
-	.center-form-pv .el-select /deep/ .el-input__inner {
+	.center-form-pv .el-select ::v-deep .el-input__inner {
 				border: 1px solid #e5e5e5;
 				border-radius: 20px 40px;
 				padding: 0 10px;
@@ -327,7 +327,7 @@ export default {
 				height: 40px;
 			}
 	
-	.center-form-pv .el-date-editor /deep/ .el-input__inner {
+	.center-form-pv .el-date-editor ::v-deep .el-input__inner {
 				border: 1px solid #e5e5e5;
 				border-radius: 20px 40px;
 				padding: 0 10px 0 30px;
@@ -340,17 +340,17 @@ export default {
 			}
 	
 	// table
-	.el-table /deep/ .el-table__header-wrapper thead {
+	.el-table ::v-deep .el-table__header-wrapper thead {
 				color: #555;
 				font-weight: 500;
 				width: 100%;
 			}
 	
-	.el-table /deep/ .el-table__header-wrapper thead tr {
+	.el-table ::v-deep .el-table__header-wrapper thead tr {
 				background: #fff;
 			}
 	
-	.el-table /deep/ .el-table__header-wrapper thead tr th {
+	.el-table ::v-deep .el-table__header-wrapper thead tr th {
 				padding: 12px 0;
 				color: #fff;
 				background: -webkit-linear-gradient(top,#4fa3e9,#3d79cf);
@@ -360,7 +360,7 @@ export default {
 				text-align: left;
 			}
 
-	.el-table /deep/ .el-table__header-wrapper thead tr th .cell {
+	.el-table ::v-deep .el-table__header-wrapper thead tr th .cell {
 				padding: 0 10px;
 				word-wrap: normal;
 				word-break: break-all;
@@ -375,15 +375,15 @@ export default {
 			}
 
 	
-	.el-table /deep/ .el-table__body-wrapper tbody {
+	.el-table ::v-deep .el-table__body-wrapper tbody {
 				width: 100%;
 			}
 
-	.el-table /deep/ .el-table__body-wrapper tbody tr {
+	.el-table ::v-deep .el-table__body-wrapper tbody tr {
 				background: #fff;
 			}
 	
-	.el-table /deep/ .el-table__body-wrapper tbody tr td {
+	.el-table ::v-deep .el-table__body-wrapper tbody tr td {
 				padding: 12px 0;
 				color: #555;
 				background: #fff;
@@ -394,7 +394,7 @@ export default {
 			}
 	
 		
-	.el-table /deep/ .el-table__body-wrapper tbody tr:hover td {
+	.el-table ::v-deep .el-table__body-wrapper tbody tr:hover td {
 				padding: 12px 0;
 				color: #555555;
 				background: #f7f7f7;
@@ -404,7 +404,7 @@ export default {
 				text-align: left;
 			}
 	
-	.el-table /deep/ .el-table__body-wrapper tbody tr td {
+	.el-table ::v-deep .el-table__body-wrapper tbody tr td {
 				padding: 12px 0;
 				color: #555;
 				background: #fff;
@@ -414,7 +414,7 @@ export default {
 				text-align: left;
 			}
 
-	.el-table /deep/ .el-table__body-wrapper tbody tr td .cell {
+	.el-table ::v-deep .el-table__body-wrapper tbody tr td .cell {
 				padding: 0 10px;
 				overflow: hidden;
 				word-break: break-all;
@@ -424,7 +424,7 @@ export default {
 			}
 	
 	// pagination
-	.main-content .el-pagination /deep/ .el-pagination__total {
+	.main-content .el-pagination ::v-deep .el-pagination__total {
 				margin: 0 10px 0 0;
 				color: #666;
 				font-weight: 400;
@@ -435,7 +435,7 @@ export default {
 				height: 28px;
 			}
 	
-	.main-content .el-pagination /deep/ .btn-prev {
+	.main-content .el-pagination ::v-deep .btn-prev {
 				border: none;
 				border-radius: 2px;
 				padding: 0 5px;
@@ -450,7 +450,7 @@ export default {
 				height: 28px;
 			}
 	
-	.main-content .el-pagination /deep/ .btn-next {
+	.main-content .el-pagination ::v-deep .btn-next {
 				border: none;
 				border-radius: 2px;
 				padding: 0 5px;
@@ -465,7 +465,7 @@ export default {
 				height: 28px;
 			}
 	
-	.main-content .el-pagination /deep/ .btn-prev:disabled {
+	.main-content .el-pagination ::v-deep .btn-prev:disabled {
 				border: none;
 				cursor: not-allowed;
 				border-radius: 4px 8px;
@@ -480,7 +480,7 @@ export default {
 				height: 28px;
 			}
 	
-	.main-content .el-pagination /deep/ .btn-next:disabled {
+	.main-content .el-pagination ::v-deep .btn-next:disabled {
 				border: none;
 				cursor: not-allowed;
 				border-radius: 4px 8px;
@@ -495,14 +495,14 @@ export default {
 				height: 28px;
 			}
 
-	.main-content .el-pagination /deep/ .el-pager {
+	.main-content .el-pagination ::v-deep .el-pager {
 				padding: 0;
 				margin: 0;
 				display: inline-block;
 				vertical-align: top;
 			}
 
-	.main-content .el-pagination /deep/ .el-pager .number {
+	.main-content .el-pagination ::v-deep .el-pager .number {
 				cursor: pointer;
 				padding: 0 4px;
 				margin: 0 5px;
@@ -518,7 +518,7 @@ export default {
 				height: 28px;
 			}
 	
-	.main-content .el-pagination /deep/ .el-pager .number:hover {
+	.main-content .el-pagination ::v-deep .el-pager .number:hover {
 				cursor: pointer;
 				padding: 0 4px;
 				margin: 0 5px;
@@ -534,7 +534,7 @@ export default {
 				height: 28px;
 			}
 	
-	.main-content .el-pagination /deep/ .el-pager .number.active {
+	.main-content .el-pagination ::v-deep .el-pager .number.active {
 				cursor: default;
 				padding: 0 4px;
 				margin: 0 5px;
@@ -550,7 +550,7 @@ export default {
 				height: 28px;
 			}
 	
-	.main-content .el-pagination /deep/ .el-pagination__sizes {
+	.main-content .el-pagination ::v-deep .el-pagination__sizes {
 				display: inline-block;
 				vertical-align: top;
 				font-size: 13px;
@@ -558,13 +558,13 @@ export default {
 				height: 28px;
 			}
 	
-	.main-content .el-pagination /deep/ .el-pagination__sizes .el-input {
+	.main-content .el-pagination ::v-deep .el-pagination__sizes .el-input {
 				margin: 0 5px;
 				width: 100px;
 				position: relative;
 			}
 	
-	.main-content .el-pagination /deep/ .el-pagination__sizes .el-input .el-input__inner {
+	.main-content .el-pagination ::v-deep .el-pagination__sizes .el-input .el-input__inner {
 				border: 1px solid #DCDFE6;
 				cursor: pointer;
 				padding: 0 25px 0 8px;
@@ -580,14 +580,14 @@ export default {
 				height: 28px;
 			}
 	
-	.main-content .el-pagination /deep/ .el-pagination__sizes .el-input span.el-input__suffix {
+	.main-content .el-pagination ::v-deep .el-pagination__sizes .el-input span.el-input__suffix {
 				top: 0;
 				position: absolute;
 				right: 0;
 				height: 100%;
 			}
 	
-	.main-content .el-pagination /deep/ .el-pagination__sizes .el-input .el-input__suffix .el-select__caret {
+	.main-content .el-pagination ::v-deep .el-pagination__sizes .el-input .el-input__suffix .el-select__caret {
 				cursor: pointer;
 				color: #C0C4CC;
 				width: 25px;
@@ -596,7 +596,7 @@ export default {
 				text-align: center;
 			}
 	
-	.main-content .el-pagination /deep/ .el-pagination__jump {
+	.main-content .el-pagination ::v-deep .el-pagination__jump {
 				margin: 0 0 0 24px;
 				color: #606266;
 				display: inline-block;
@@ -606,7 +606,7 @@ export default {
 				height: 28px;
 			}
 	
-	.main-content .el-pagination /deep/ .el-pagination__jump .el-input {
+	.main-content .el-pagination ::v-deep .el-pagination__jump .el-input {
 				border-radius: 3px;
 				padding: 0 2px;
 				margin: 0 5px;
@@ -619,7 +619,7 @@ export default {
 				height: 28px;
 			}
 	
-	.main-content .el-pagination /deep/ .el-pagination__jump .el-input .el-input__inner {
+	.main-content .el-pagination ::v-deep .el-pagination__jump .el-input .el-input__inner {
 				border: 1px solid #DCDFE6;
 				cursor: pointer;
 				padding: 0 3px;

@@ -79,7 +79,7 @@
 					<el-input v-model="ruleForm.xingming" placeholder="姓名" readonly></el-input>
 				</el-form-item>
 				<el-form-item :style='{"margin":"0 0 20px 0"}' class="select" v-if="type!='info'" label="车牌号" prop="chepaihao">
-					<el-select :disabled="ro.chepaihao" @change="chepaihaoChange" v-model="ruleForm.chepaihao" placeholder="请选择车牌号">
+					<el-select :disabled="ro.chepaihao" @change="chepaihaoChange" v-model="ruleForm.chepaihao" placeholder="请选择车牌号(只能选择空闲车辆)" filterable allow-create>
 						<el-option
 							v-for="(item,index) in chepaihaoOptions"
 							v-bind:key="index"
@@ -262,7 +262,7 @@ export default {
 				tupian: '',
 			},
 		
-			yunshuzhuangtaiOptions: [],
+			yunshuzhuangtaiOptions: "未发车,进行中,已完成".split(','),
 			zhanghaoOptions: [],
 			chepaihaoOptions: [],
 			
@@ -441,7 +441,7 @@ export default {
 				}
 			});
 			
-            this.yunshuzhuangtaiOptions = "已发车,未发车".split(',')
+            this.yunshuzhuangtaiOptions = "未发车,进行中,已完成".split(',')
             this.$http({
 				url: `option/jiashiyuan/zhanghao`,
 				method: "get"
@@ -452,12 +452,29 @@ export default {
 					this.$message.error(data.msg);
 				}
             });
+            // 获取车牌号，只获取不在运输中的车辆
             this.$http({
 				url: `option/cheliangxinxi/chepaihao`,
 				method: "get"
             }).then(({ data }) => {
 				if (data && data.code === 0) {
-					this.chepaihaoOptions = data.data;
+					this.chepaihaoOptions = data.data || [];
+					// 获取当前正在运输的车辆车牌号
+					this.$http({
+						url: 'yunshuxinxi/list',
+						method: 'get',
+						params: {
+							page: 1,
+							limit: 1000,
+							zhuangtai: '运输中'
+						}
+					}).then(({ data: transportData }) => {
+						if (transportData && transportData.code === 0) {
+							const inTransportPlates = (transportData.data.list || []).map(item => item.chepaihao)
+							// 过滤掉正在运输中的车牌号
+							this.chepaihaoOptions = this.chepaihaoOptions.filter(plate => !inTransportPlates.includes(plate))
+						}
+					}).catch(() => {})
 				} else {
 					this.$message.error(data.msg);
 				}
@@ -716,7 +733,7 @@ var objcross = this.$storage.getObj('crossObj');
 		width: auto;
 	}
 	
-	.add-update-preview .el-form-item /deep/ .el-form-item__label {
+	.add-update-preview .el-form-item ::v-deep .el-form-item__label {
 	  	  padding: 0 10px 0 0;
 	  	  color: #666;
 	  	  font-weight: 500;
@@ -726,11 +743,11 @@ var objcross = this.$storage.getObj('crossObj');
 	  	  text-align: right;
 	  	}
 	
-	.add-update-preview .el-form-item /deep/ .el-form-item__content {
+	.add-update-preview .el-form-item ::v-deep .el-form-item__content {
 	  margin-left: 80px;
 	}
 	
-	.add-update-preview .el-input /deep/ .el-input__inner {
+	.add-update-preview .el-input ::v-deep .el-input__inner {
 	  	  border: 1px solid #5497f2;
 	  	  border-radius: 20px 40px;
 	  	  padding: 0 12px;
@@ -742,7 +759,7 @@ var objcross = this.$storage.getObj('crossObj');
 	  	  height: 40px;
 	  	}
 	
-	.add-update-preview .el-select /deep/ .el-input__inner {
+	.add-update-preview .el-select ::v-deep .el-input__inner {
 	  	  border: 1px solid #5497f2;
 	  	  border-radius: 20px 40px;
 	  	  padding: 0 10px;
@@ -754,7 +771,7 @@ var objcross = this.$storage.getObj('crossObj');
 	  	  height: 40px;
 	  	}
 	
-	.add-update-preview .el-date-editor /deep/ .el-input__inner {
+	.add-update-preview .el-date-editor ::v-deep .el-input__inner {
 	  	  border: 1px solid #5497f2;
 	  	  border-radius: 20px 40px;
 	  	  padding: 0 10px 0 30px;
@@ -766,7 +783,7 @@ var objcross = this.$storage.getObj('crossObj');
 	  	  height: 40px;
 	  	}
 	
-	.add-update-preview /deep/ .el-upload--picture-card {
+	.add-update-preview ::v-deep .el-upload--picture-card {
 		background: transparent;
 		border: 0;
 		border-radius: 0;
@@ -776,7 +793,7 @@ var objcross = this.$storage.getObj('crossObj');
 		vertical-align: middle;
 	}
 	
-	.add-update-preview /deep/ .upload .upload-img {
+	.add-update-preview ::v-deep .upload .upload-img {
 	  	  border: 1px dashed rgba(64, 158, 255, 1);
 	  	  cursor: pointer;
 	  	  border-radius: 20px 40px;
@@ -788,7 +805,7 @@ var objcross = this.$storage.getObj('crossObj');
 	  	  height: 100px;
 	  	}
 	
-	.add-update-preview /deep/ .el-upload-list .el-upload-list__item {
+	.add-update-preview ::v-deep .el-upload-list .el-upload-list__item {
 	  	  border: 1px dashed rgba(64, 158, 255, 1);
 	  	  cursor: pointer;
 	  	  border-radius: 20px 40px;
@@ -800,7 +817,7 @@ var objcross = this.$storage.getObj('crossObj');
 	  	  height: 100px;
 	  	}
 	
-	.add-update-preview /deep/ .el-upload .el-icon-plus {
+	.add-update-preview ::v-deep .el-upload .el-icon-plus {
 	  	  border: 1px dashed rgba(64, 158, 255, 1);
 	  	  cursor: pointer;
 	  	  border-radius: 20px 40px;
@@ -812,7 +829,7 @@ var objcross = this.$storage.getObj('crossObj');
 	  	  height: 100px;
 	  	}
 	
-	.add-update-preview .el-textarea /deep/ .el-textarea__inner {
+	.add-update-preview .el-textarea ::v-deep .el-textarea__inner {
 	  	  border: 1px solid #5497f2;
 	  	  border-radius: 20px 40px;
 	  	  padding: 12px;

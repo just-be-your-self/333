@@ -2,7 +2,7 @@
 	<div>
 		<div class="container" :style='{"minHeight":"100vh","alignItems":"center","background":"url(http://codegen.caihongy.cn/20221010/3d359a9094d045b5a445e8d903a25a5c.jpg)","display":"flex","width":"100%","backgroundSize":"cover","backgroundPosition":"center center","backgroundRepeat":"no-repeat","justifyContent":"center"}'>
 			<el-form v-if="pageFlag=='register'" :style='{"padding":"30px 20px 30px","boxShadow":"0 0px 0px rgba(64, 158, 255, .8)","margin":"0","borderRadius":"20px  120px","background":"-webkit-linear-gradient(top,#fff,#ccc)","width":"800px","height":"auto"}' ref="rgsForm" class="rgs-form" :model="rgsForm">
-				<div v-if="true" :style='{"margin":"0 0 20px 0","color":"#4d90ef","textAlign":"center","width":"100%","letterSpacing":"5px","lineHeight":"44px","fontSize":"32px","textShadow":"0px 0px 0px #4d90ef"}' class="title">危险物品运输管理系统注册</div>
+				<div v-if="true" :style='{"margin":"0 0 20px 0","color":"#4d90ef","textAlign":"center","width":"100%","letterSpacing":"5px","lineHeight":"44px","fontSize":"32px","textShadow":"0px 0px 0px #4d90ef"}' class="title">危险品物流管理系统注册</div>
 				<el-form-item :style='{"width":"80%","padding":"0","margin":"0 auto 10px","height":"auto"}' class="list-item" v-if="tableName=='jiashiyuan'">
 					<div v-if="true" :style='{"margin":"0px 0px 40px -24px","color":"#666","left":"0","textAlign":"right","width":"104px","lineHeight":"44px","fontSize":"16px","position":"absolute"}' class="lable">账号</div>
 					<el-input  v-model="ruleForm.zhanghao"  autocomplete="off" placeholder="账号"  type="text"  />
@@ -242,7 +242,7 @@ export default {
 		  width: 100%;
 		}
 		
-		.rgs-form .el-input /deep/ .el-input__inner {
+		.rgs-form .el-input ::v-deep .el-input__inner {
 						border: 1px solid #ddd;
 						border-radius: 80px  40px;
 						padding: 0 24px;
@@ -255,7 +255,7 @@ export default {
 						height: 40px;
 					}
 		
-		.rgs-form .el-select /deep/ .el-input__inner {
+		.rgs-form .el-select ::v-deep .el-input__inner {
 						border: 1px solid #ddd;
 						border-radius: 80px  40px;
 						padding: 0 24px;
@@ -268,7 +268,7 @@ export default {
 						height: 40px;
 					}
 		
-		.rgs-form .el-date-editor /deep/ .el-input__inner {
+		.rgs-form .el-date-editor ::v-deep .el-input__inner {
 						border: 1px solid #ddd;
 						border-radius: 80px  40px;
 						padding: 0 10px 0 24px;
@@ -281,7 +281,7 @@ export default {
 						height: 40px;
 					}
 		
-		.rgs-form .el-date-editor /deep/ .el-input__inner {
+		.rgs-form .el-date-editor ::v-deep .el-input__inner {
 						border: 1px solid #ddd;
 						border-radius: 80px  40px;
 						padding: 0 10px 0 24px;
@@ -294,7 +294,7 @@ export default {
 						height: 40px;
 					}
 		
-		.rgs-form /deep/ .el-upload--picture-card {
+		.rgs-form ::v-deep .el-upload--picture-card {
 			background: transparent;
 			border: 0;
 			border-radius: 0;
@@ -304,7 +304,7 @@ export default {
 			vertical-align: middle;
 		}
 		
-		.rgs-form /deep/ .upload .upload-img {
+		.rgs-form ::v-deep .upload .upload-img {
 		  		  border: 1px dashed #ffffff;
 		  		  cursor: pointer;
 		  		  border-radius: 8px;
@@ -317,7 +317,7 @@ export default {
 		  		  height: 100px;
 		  		}
 		
-		.rgs-form /deep/ .el-upload-list .el-upload-list__item {
+		.rgs-form ::v-deep .el-upload-list .el-upload-list__item {
 		  		  border: 1px dashed #ffffff;
 		  		  cursor: pointer;
 		  		  border-radius: 8px;
@@ -330,7 +330,7 @@ export default {
 		  		  height: 100px;
 		  		}
 		
-		.rgs-form /deep/ .el-upload .el-icon-plus {
+		.rgs-form ::v-deep .el-upload .el-icon-plus {
 		  		  border: 1px dashed #ffffff;
 		  		  cursor: pointer;
 		  		  border-radius: 8px;

@@ -154,13 +154,13 @@ export default {
 	  .el-scrollbar {
 	    height: 100%;
 	
-	    & /deep/ .scrollbar-wrapper {
+	::v-deep .scrollbar-wrapper {
 	      overflow-x: hidden;
 	    }
 		
 				// 竖向
 		.el-menu-vertical-demo {
-		  .el-submenu:first-of-type /deep/ .el-submenu__title .el-submenu__icon-arrow {
+		  .el-submenu:first-of-type ::v-deep .el-submenu__title .el-submenu__icon-arrow {
 		    display: none;
 		  }
 		}
@@ -181,7 +181,7 @@ export default {
 						background: -webkit-linear-gradient(top,#038afb,#0c5592);
 					}
 		
-		.el-menu-vertical-demo .el-submenu /deep/ .el-submenu__title {
+		.el-menu-vertical-demo .el-submenu ::v-deep .el-submenu__title {
 						cursor: pointer;
 						border-radius: 4px 20px;
 						padding: 0 20px;
@@ -192,12 +192,12 @@ export default {
 						position: relative;
 					}
 		
-		.el-menu-vertical-demo .el-submenu /deep/ .el-submenu__title:hover {
+		.el-menu-vertical-demo .el-submenu ::v-deep .el-submenu__title:hover {
 						color: #fff;
 						background: -webkit-linear-gradient(top,#038afb,#0c5592);
 					}
 		
-		.el-menu-vertical-demo .el-submenu /deep/ .el-submenu__title .el-submenu__icon-arrow {
+		.el-menu-vertical-demo .el-submenu ::v-deep .el-submenu__title .el-submenu__icon-arrow {
 						margin: -7px 0 0 0;
 						top: 50%;
 						color: inherit;
@@ -213,13 +213,13 @@ export default {
 						list-style: none;
 					}
 		
-		// .el-menu-vertical-demo .el-submenu /deep/ .el-menu {
+		// .el-menu-vertical-demo .el-submenu ::v-deep .el-menu {
 		// 				// 		border: none;
 		// 				// 		background: none;
 		// 				// 		display: none;
 		// 				// }
 		
-		.el-menu-vertical-demo .el-submenu /deep/ .el-menu .el-menu-item {
+		.el-menu-vertical-demo .el-submenu ::v-deep .el-menu .el-menu-item {
 						border: 1px solid #038afb;
 						border-radius: 80px  40px;
 						padding: 0 24px;
@@ -230,7 +230,7 @@ export default {
 						height: 40px;
 					}
 		
-		.el-menu-vertical-demo .el-submenu /deep/ .el-menu .el-menu-item:hover {
+		.el-menu-vertical-demo .el-submenu ::v-deep .el-menu .el-menu-item:hover {
 						padding: 0 24px;
 						color: #fff;
 						background: -webkit-linear-gradient(top,#5caff5,#038afb);
@@ -238,7 +238,7 @@ export default {
 						height: 40px;
 					}
 		
-		.el-menu-vertical-demo .el-submenu /deep/ .el-menu .el-menu-item.is-active {
+		.el-menu-vertical-demo .el-submenu ::v-deep .el-menu .el-menu-item.is-active {
 						padding: 0 24px;
 						color: #fff;
 						background: -webkit-linear-gradient(top,#5caff5,#038afb);

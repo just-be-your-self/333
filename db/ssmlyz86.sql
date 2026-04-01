@@ -11,17 +11,13 @@
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, UNIQUE_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */
 
 --
 -- Current Database: `ssmlyz86`
 --
-
-/*!40000 DROP DATABASE IF EXISTS `ssmlyz86`*/;
-
-CREATE DATABASE /*!32312 IF NOT EXISTS*/ `ssmlyz86` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
 
 USE `ssmlyz86`;
 
@@ -45,7 +41,7 @@ CREATE TABLE `cheliangxinxi` (
   `cheliangxiangqing` longtext COMMENT '车辆详情',
   PRIMARY KEY (`id`),
   UNIQUE KEY `chepaihao` (`chepaihao`)
-) ENGINE=InnoDB AUTO_INCREMENT=1667808991474 DEFAULT CHARSET=utf8 COMMENT='车辆信息';
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COMMENT='车辆信息';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -54,7 +50,15 @@ CREATE TABLE `cheliangxinxi` (
 
 LOCK TABLES `cheliangxinxi` WRITE;
 /*!40000 ALTER TABLE `cheliangxinxi` DISABLE KEYS */;
-INSERT INTO `cheliangxinxi` VALUES (21,'2022-11-07 08:13:44','车牌号1','车辆品牌1','危险品类型1','颜色1','手动挡','upload/cheliangxinxi_cheliangzhaopian1.jpg','2022-11-07','车辆详情1'),(22,'2022-11-07 08:13:44','车牌号2','车辆品牌2','危险品类型2','颜色2','手动挡','upload/cheliangxinxi_cheliangzhaopian2.jpg','2022-11-07','车辆详情2'),(23,'2022-11-07 08:13:44','车牌号3','车辆品牌3','危险品类型3','颜色3','手动挡','upload/cheliangxinxi_cheliangzhaopian3.jpg','2022-11-07','车辆详情3'),(24,'2022-11-07 08:13:44','车牌号4','车辆品牌4','危险品类型4','颜色4','手动挡','upload/cheliangxinxi_cheliangzhaopian4.jpg','2022-11-07','车辆详情4'),(25,'2022-11-07 08:13:44','车牌号5','车辆品牌5','危险品类型5','颜色5','手动挡','upload/cheliangxinxi_cheliangzhaopian5.jpg','2022-11-07','车辆详情5'),(26,'2022-11-07 08:13:44','车牌号6','车辆品牌6','危险品类型6','颜色6','手动挡','upload/cheliangxinxi_cheliangzhaopian6.jpg','2022-11-07','车辆详情6'),(27,'2022-11-07 08:13:44','车牌号7','车辆品牌7','危险品类型7','颜色7','手动挡','upload/cheliangxinxi_cheliangzhaopian7.jpg','2022-11-07','车辆详情7'),(28,'2022-11-07 08:13:44','车牌号8','车辆品牌8','危险品类型8','颜色8','手动挡','upload/cheliangxinxi_cheliangzhaopian8.jpg','2022-11-07','车辆详情8'),(1667808991473,'2022-11-07 08:16:30','京W45612','丰田','水电费省道','省道发送到','自动挡','upload/1667808985275.jpg','2022-11-06','<p>省道发送到省道发送到发送到发送到发送到发送到发送到</p>');
+INSERT INTO `cheliangxinxi` VALUES 
+(1,'2024-03-15 08:00:00','京A88888','东风重卡','易燃液体','白色','自动挡','upload/truck1.jpg','2023-06-15','东风天龙KL危化品运输车，配备GPS定位系统、防碰撞预警、车道偏离预警等安全设备，适合运输各类液体危险品'),
+(2,'2024-03-15 08:10:00','京B66666','解放重卡','剧毒化学品','蓝色','自动挡','upload/truck2.jpg','2023-07-20','解放J6P危险品运输车，配备紧急切断装置、轮胎压力监测系统、侧翻预警系统，适用于剧毒化学品运输'),
+(3,'2024-03-15 08:20:00','京C12345','重汽豪沃','爆炸品','红色','手动挡','upload/truck3.jpg','2023-05-10','重汽豪沃T7H爆炸品专用运输车，配备隔热冷却系统、防静电装置、卫星定位系统'),
+(4,'2024-03-15 08:30:00','京D55555','陕汽德龙','易燃气体','黄色','自动挡','upload/truck4.jpg','2023-08-25','陕汽德龙X3000液化气运输车，配备泄漏报警装置、紧急切断装置、阻火器'),
+(5,'2024-03-15 08:40:00','京E77777','福田欧曼','腐蚀性物质','银色','自动挡','upload/truck5.jpg','2023-09-12','福田欧曼GTL腐蚀性物质运输车，配备防腐内衬、泄漏收集装置、酸碱中和设备'),
+(6,'2024-03-15 08:50:00','冀A99999','解放J6','放射性物质','黑色','自动挡','upload/truck6.jpg','2023-04-18','解放J6P放射性物质专用运输车，配备辐射监测仪、屏蔽装置、专用容器'),
+(7,'2024-03-15 09:00:00','冀B11111','东风天龙','氧化剂','绿色','手动挡','upload/truck7.jpg','2023-10-05','东风天龙KL氧化剂运输车，配备温度监测、自动灭火系统、紧急泄漏处理设备'),
+(8,'2024-03-15 09:10:00','冀C33333','重汽汕德卡','感染性物质','橙色','自动挡','upload/truck8.jpg','2023-11-22','重汽汕德卡C7H医疗废物运输车，配备密闭车厢、紫外线消毒灯、冷藏系统');
 /*!40000 ALTER TABLE `cheliangxinxi` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -100,10 +104,10 @@ CREATE TABLE `jiashiyuan` (
   `xingbie` varchar(200) DEFAULT NULL COMMENT '性别',
   `shouji` varchar(200) DEFAULT NULL COMMENT '手机',
   `touxiang` varchar(200) DEFAULT NULL COMMENT '头像',
-  `jiazhaoyouxiaoqi` varchar(200) DEFAULT NULL,
+  `jiazhaoyouxiaoqi` varchar(200) DEFAULT NULL COMMENT '驾照有效期',
   PRIMARY KEY (`id`),
   UNIQUE KEY `zhanghao` (`zhanghao`)
-) ENGINE=InnoDB AUTO_INCREMENT=1667808936888 DEFAULT CHARSET=utf8 COMMENT='驾驶员';
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COMMENT='驾驶员';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -112,7 +116,15 @@ CREATE TABLE `jiashiyuan` (
 
 LOCK TABLES `jiashiyuan` WRITE;
 /*!40000 ALTER TABLE `jiashiyuan` DISABLE KEYS */;
-INSERT INTO `jiashiyuan` VALUES (11,'2022-11-07 08:13:44','账号1','123456','姓名1',1,'男','13823888881','upload/jiashiyuan_touxiang1.jpg','驾照有效期1'),(12,'2022-11-07 08:13:44','账号2','123456','姓名2',2,'男','13823888882','upload/jiashiyuan_touxiang2.jpg','驾照有效期2'),(13,'2022-11-07 08:13:44','账号3','123456','姓名3',3,'男','13823888883','upload/jiashiyuan_touxiang3.jpg','驾照有效期3'),(14,'2022-11-07 08:13:44','账号4','123456','姓名4',4,'男','13823888884','upload/jiashiyuan_touxiang4.jpg','驾照有效期4'),(15,'2022-11-07 08:13:44','账号5','123456','姓名5',5,'男','13823888885','upload/jiashiyuan_touxiang5.jpg','驾照有效期5'),(16,'2022-11-07 08:13:44','账号6','123456','姓名6',6,'男','13823888886','upload/jiashiyuan_touxiang6.jpg','驾照有效期6'),(17,'2022-11-07 08:13:44','账号7','123456','姓名7',7,'男','13823888887','upload/jiashiyuan_touxiang7.jpg','驾照有效期7'),(18,'2022-11-07 08:13:44','账号8','123456','姓名8',8,'男','13823888888','upload/jiashiyuan_touxiang8.jpg','驾照有效期8'),(1667808936887,'2022-11-07 08:15:36','11','11','地方',11,'男','15111122211','upload/1667808934272.jpg','3年');
+INSERT INTO `jiashiyuan` VALUES 
+(1,'2024-01-10 08:00:00','driver001','123456','张伟',38,'男','13812340001','upload/driver1.jpg','2026-05-15'),
+(2,'2024-01-10 08:10:00','driver002','123456','李强',42,'男','13812340002','upload/driver2.jpg','2025-08-20'),
+(3,'2024-01-10 08:20:00','driver003','123456','王磊',35,'男','13812340003','upload/driver3.jpg','2027-03-10'),
+(4,'2024-01-10 08:30:00','driver004','123456','刘洋',45,'男','13812340004','upload/driver4.jpg','2025-12-25'),
+(5,'2024-01-10 08:40:00','driver005','123456','陈刚',31,'男','13812340005','upload/driver5.jpg','2026-09-08'),
+(6,'2024-01-10 08:50:00','driver006','123456','赵军',40,'男','13812340006','upload/driver6.jpg','2025-04-18'),
+(7,'2024-01-10 09:00:00','driver007','123456','孙鹏',36,'男','13812340007','upload/driver7.jpg','2026-11-30'),
+(8,'2024-01-10 09:10:00','driver008','123456','周涛',44,'男','13812340008','upload/driver8.jpg','2025-07-22');
 /*!40000 ALTER TABLE `jiashiyuan` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -128,14 +140,14 @@ CREATE TABLE `jingbaojiemian` (
   `addtime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `biaoti` varchar(200) DEFAULT NULL COMMENT '标题',
   `dianhua` varchar(200) DEFAULT NULL COMMENT '电话',
-  `jingbaoyuanyin` varchar(200) DEFAULT NULL,
+  `jingbaoyuanyin` varchar(200) DEFAULT NULL COMMENT '警报原因',
   `jingbaoshijian` datetime DEFAULT NULL COMMENT '警报时间',
   `zhanghao` varchar(200) DEFAULT NULL COMMENT '账号',
   `xingming` varchar(200) DEFAULT NULL COMMENT '姓名',
   `sfsh` varchar(200) DEFAULT '待审核' COMMENT '是否审核',
   `shhf` longtext COMMENT '审核回复',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1667809090569 DEFAULT CHARSET=utf8 COMMENT='警报界面';
+) ENGINE=InnoDB AUTO_INCREMENT=71 DEFAULT CHARSET=utf8 COMMENT='警报界面';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -144,7 +156,15 @@ CREATE TABLE `jingbaojiemian` (
 
 LOCK TABLES `jingbaojiemian` WRITE;
 /*!40000 ALTER TABLE `jingbaojiemian` DISABLE KEYS */;
-INSERT INTO `jingbaojiemian` VALUES (71,'2022-11-07 08:13:44','标题1','电话1','警报原因1','2022-11-07 16:13:44','账号1','姓名1','是',''),(72,'2022-11-07 08:13:44','标题2','电话2','警报原因2','2022-11-07 16:13:44','账号2','姓名2','是',''),(73,'2022-11-07 08:13:44','标题3','电话3','警报原因3','2022-11-07 16:13:44','账号3','姓名3','是',''),(74,'2022-11-07 08:13:44','标题4','电话4','警报原因4','2022-11-07 16:13:44','账号4','姓名4','是',''),(75,'2022-11-07 08:13:44','标题5','电话5','警报原因5','2022-11-07 16:13:44','账号5','姓名5','是',''),(76,'2022-11-07 08:13:44','标题6','电话6','警报原因6','2022-11-07 16:13:44','账号6','姓名6','是',''),(77,'2022-11-07 08:13:44','标题7','电话7','警报原因7','2022-11-07 16:13:44','账号7','姓名7','是',''),(78,'2022-11-07 08:13:44','标题8','电话8','警报原因8','2022-11-07 16:13:44','账号8','姓名8','是',''),(1667809090568,'2022-11-07 08:18:10','水电费省道省道','阿萨德按时','水电费省道发送到发送到发送到','2022-11-07 16:18:45','11','地方','是','收到1122');
+INSERT INTO `jingbaojiemian` VALUES 
+(71,'2024-03-20 14:30:00','京A88888超速告警','13812340001','车辆超速行驶，当前速度105km/h，超过限定速度30%','2024-03-20 14:28:00','driver001','张伟','已处理','已通知驾驶员注意减速慢行，加强监控'),
+(72,'2024-03-21 09:15:00','京B66666偏离路线','13812340002','车辆偏离预定路线，已偏离5公里','2024-03-21 09:12:00','driver002','李强','已处理','检查GPS定位，确认重新规划路线'),
+(73,'2024-03-22 16:45:00','京C12345紧急刹车','13812340003','车辆急刹车，疑似紧急避让','2024-03-22 16:43:00','driver003','王磊','已处理','已与驾驶员通话确认情况，安全通过'),
+(74,'2024-03-23 11:20:00','京D55555疲劳驾驶预警','13812340004','驾驶员连续驾驶超过4小时','2024-03-23 11:18:00','driver004','刘洋','已处理','已通知驾驶员到服务区休息'),
+(75,'2024-03-24 08:05:00','京E77777温度异常','13812340005','货物温度传感器异常，检测到温度超标','2024-03-24 08:03:00','driver005','陈刚','已处理','已停车检查，确认货物安全'),
+(76,'2024-03-25 13:50:00','冀A99999碰撞预警','13812340006','车辆与前车距离过近，触发碰撞预警','2024-03-25 13:48:00','driver006','赵军','已处理','已提醒驾驶员注意车距'),
+(77,'2024-03-26 17:30:00','冀B11111违规停车','13812340007','车辆在禁止停车区域停留超过10分钟','2024-03-26 17:28:00','driver007','孙鹏','已处理','已通知驶离，前往正规停车点'),
+(78,'2024-03-27 10:40:00','冀C33333电子围栏告警','13812340008','车辆进入禁止通行区域','2024-03-27 10:38:00','driver008','周涛','已处理','确认是导航误导，已重新规划路线');
 /*!40000 ALTER TABLE `jingbaojiemian` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -174,7 +194,7 @@ CREATE TABLE `token` (
 
 LOCK TABLES `token` WRITE;
 /*!40000 ALTER TABLE `token` DISABLE KEYS */;
-INSERT INTO `token` VALUES (1,1667808936887,'11','jiashiyuan','驾驶员','ss8jpycoms7mbzkfehy07i2t38gsdcjv','2022-11-07 08:15:40','2022-11-07 09:19:02'),(2,1,'admin','users','管理员','6ya35ow4fk2k5aj8gp1e7oqbayfxvokk','2022-11-07 08:15:58','2022-11-07 09:18:15');
+INSERT INTO `token` VALUES (1,1,'admin','users','管理员','ss8jpycoms7mbzkfehy07i2t38gsdcjv','2024-03-28 08:00:00','2024-03-29 08:00:00'),(2,1,'driver001','jiashiyuan','驾驶员','6ya35ow4fk2k5aj8gp1e7oqbayfxvokk','2024-03-28 08:05:00','2024-03-29 08:05:00');
 /*!40000 ALTER TABLE `token` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -201,7 +221,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'admin','admin','管理员','2022-11-07 08:13:44');
+INSERT INTO `users` VALUES (1,'admin','admin','管理员','2024-01-01 08:00:00');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -220,13 +240,13 @@ CREATE TABLE `weixianpinxinxi` (
   `weixianpinleixing` varchar(200) DEFAULT NULL COMMENT '危险品类型',
   `guige` varchar(200) DEFAULT NULL COMMENT '规格',
   `shuliang` int(11) DEFAULT NULL COMMENT '数量',
-  `zhuyishixiang` longtext,
-  `fengmian` varchar(200) DEFAULT NULL,
+  `zhuyishixiang` longtext COMMENT '注意事项',
+  `fengmian` varchar(200) DEFAULT NULL COMMENT '封面',
   `xiangqing` longtext COMMENT '详情',
-  `dengjiriqi` date DEFAULT NULL,
+  `dengjiriqi` date DEFAULT NULL COMMENT '登记日期',
   PRIMARY KEY (`id`),
   UNIQUE KEY `weixianpinbianhao` (`weixianpinbianhao`)
-) ENGINE=InnoDB AUTO_INCREMENT=1667809011737 DEFAULT CHARSET=utf8 COMMENT='危险品信息';
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8 COMMENT='危险品信息';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -235,7 +255,15 @@ CREATE TABLE `weixianpinxinxi` (
 
 LOCK TABLES `weixianpinxinxi` WRITE;
 /*!40000 ALTER TABLE `weixianpinxinxi` DISABLE KEYS */;
-INSERT INTO `weixianpinxinxi` VALUES (31,'2022-11-07 08:13:44','1111111111','危险品名称1','危险品类型1','规格1',1,'注意事项1','upload/weixianpinxinxi_fengmian1.jpg','详情1','2022-11-07'),(32,'2022-11-07 08:13:44','2222222222','危险品名称2','危险品类型2','规格2',2,'注意事项2','upload/weixianpinxinxi_fengmian2.jpg','详情2','2022-11-07'),(33,'2022-11-07 08:13:44','3333333333','危险品名称3','危险品类型3','规格3',3,'注意事项3','upload/weixianpinxinxi_fengmian3.jpg','详情3','2022-11-07'),(34,'2022-11-07 08:13:44','4444444444','危险品名称4','危险品类型4','规格4',4,'注意事项4','upload/weixianpinxinxi_fengmian4.jpg','详情4','2022-11-07'),(35,'2022-11-07 08:13:44','5555555555','危险品名称5','危险品类型5','规格5',5,'注意事项5','upload/weixianpinxinxi_fengmian5.jpg','详情5','2022-11-07'),(36,'2022-11-07 08:13:44','6666666666','危险品名称6','危险品类型6','规格6',6,'注意事项6','upload/weixianpinxinxi_fengmian6.jpg','详情6','2022-11-07'),(37,'2022-11-07 08:13:44','7777777777','危险品名称7','危险品类型7','规格7',7,'注意事项7','upload/weixianpinxinxi_fengmian7.jpg','详情7','2022-11-07'),(38,'2022-11-07 08:13:44','8888888888','危险品名称8','危险品类型8','规格8',8,'注意事项8','upload/weixianpinxinxi_fengmian8.jpg','详情8','2022-11-07'),(1667809011736,'2022-11-07 08:16:50','1667809034288','第一危险品','地方省道','省道发送到',30,'水电费省道发送到发送到水电费省道发送到发送到水电费省道发送到发送到水电费省道发送到发送到','upload/1667809004820.jpg','<p>水电费省道发送到发送到水电费省道发送到发送到水电费省道发送到发送到水电费省道发送到发送到水电费省道发送到发送到水电费省道发送到发送到水电费省道发送到发送到水电费省道发送到发送到水电费省道发送到发送到水电费省道发送到发送到水电费省道发送到发送到水电费省道发送到发送到水电费省道发送到发送到水电费省道发送到发送到水电费省道发送到发送到</p>','2022-11-07');
+INSERT INTO `weixianpinxinxi` VALUES 
+(31,'2024-02-01 09:00:00','WB00001','液化石油气','易燃气体','50吨','50','远离明火和热源，防止暴晒；禁止与氧化剂混运；泄漏时迅速撤离','upload/wx1.jpg','液化石油气，主要成分为丙烷、丁烷等烃类混合物，具有易燃、易爆特性。广泛用于工业燃料、民用燃气等领域。运输需采用专用压力容器罐车。','2024-02-01'),
+(32,'2024-02-01 09:10:00','WB00002','浓硫酸','腐蚀性物质','30立方米','30','防止震动、撞击和倾倒；皮肤接触立即用大量清水冲洗；禁止与金属、有机物接触','upload/wx2.jpg','浓硫酸，浓度98%，强腐蚀性、强氧化性。用于石油精炼、冶金、化工等领域。运输需使用耐酸罐体，配备防腐设备。','2024-02-01'),
+(33,'2024-02-01 09:20:00','WB00003','TNT炸药','爆炸品','10吨','10','防止撞击、摩擦和明火；远离热源和电源；执行严格的安全操作规程','upload/wx3.jpg','梯恩梯（TNT），黄色晶体，高度爆炸性。用于矿山开采、工程爆破等领域。运输需公安部门审批，配备专用防爆车辆。','2024-02-01'),
+(34,'2024-02-01 09:30:00','WB00004','液氨','有毒气体','25吨','25','密闭操作，加强通风；配备泄漏应急处理设备；作业人员需佩戴防毒面具','upload/wx4.jpg','液氨，无色有刺激性气味气体，易溶于水。用于化肥生产、冷链物流等领域。运输需配备氨气检测仪和防护装备。','2024-02-01'),
+(35,'2024-02-01 09:40:00','WB00005','乙醇','易燃液体','40吨','40','容器密封，防止泄漏；远离火源和高温设备；注意防静电','upload/wx5.jpg','乙醇，无色透明液体，易燃。用于医药消毒、化工原料、燃料添加剂等领域。运输需使用专用槽罐车，保持阴凉通风。','2024-02-01'),
+(36,'2024-02-01 09:50:00','WB00006','氰化钠','剧毒化学品','5吨','5','严格执行五双管理制度；配备专用防护装备；泄漏时用漂白粉覆盖处理','upload/wx6.jpg','氰化钠，白色结晶粉末，剧毒。用于金矿提取、电镀等领域。运输需公安部门审批，配备专业押运人员。','2024-02-01'),
+(37,'2024-02-01 10:00:00','WB00007','硝酸铵','氧化剂','60吨','60','防止与可燃物混合；禁止撞击和高温；储存于阴凉干燥处','upload/wx7.jpg','硝酸铵，白色结晶，氧化剂。与可燃物混合形成爆炸性混合物。用于农业肥料、民用炸药等领域。运输储存需严格管理。','2024-02-01'),
+(38,'2024-02-01 10:10:00','WB00008','医疗废物','感染性物质','20吨','20','采用专用密闭容器运输；禁止与其他货物混装；运输后需彻底消毒','upload/wx8.jpg','医疗废物，包括使用过的一次性注射器、输液器、废弃药品等。可能携带病原微生物。需专用冷藏车辆运输，送指定处理厂处置。','2024-02-01');
 /*!40000 ALTER TABLE `weixianpinxinxi` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -254,11 +282,11 @@ CREATE TABLE `yingjiyuan` (
   `fanganjianjie` longtext COMMENT '方案简介',
   `fanganneirong` longtext COMMENT '方案内容',
   `dengjishijian` datetime DEFAULT NULL COMMENT '登记时间',
-  `zhanghao` varchar(200) DEFAULT NULL,
-  `xingming` varchar(200) DEFAULT NULL,
+  `zhanghao` varchar(200) DEFAULT NULL COMMENT '账号',
+  `xingming` varchar(200) DEFAULT NULL COMMENT '姓名',
   PRIMARY KEY (`id`),
   UNIQUE KEY `fanganbianhao` (`fanganbianhao`)
-) ENGINE=InnoDB AUTO_INCREMENT=1667809083659 DEFAULT CHARSET=utf8 COMMENT='应急预案';
+) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8 COMMENT='应急预案';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -267,7 +295,15 @@ CREATE TABLE `yingjiyuan` (
 
 LOCK TABLES `yingjiyuan` WRITE;
 /*!40000 ALTER TABLE `yingjiyuan` DISABLE KEYS */;
-INSERT INTO `yingjiyuan` VALUES (61,'2022-11-07 08:13:44','1111111111','方案标题1','方案简介1','方案内容1','2022-11-07 16:13:44','账号1','姓名1'),(62,'2022-11-07 08:13:44','2222222222','方案标题2','方案简介2','方案内容2','2022-11-07 16:13:44','账号2','姓名2'),(63,'2022-11-07 08:13:44','3333333333','方案标题3','方案简介3','方案内容3','2022-11-07 16:13:44','账号3','姓名3'),(64,'2022-11-07 08:13:44','4444444444','方案标题4','方案简介4','方案内容4','2022-11-07 16:13:44','账号4','姓名4'),(65,'2022-11-07 08:13:44','5555555555','方案标题5','方案简介5','方案内容5','2022-11-07 16:13:44','账号5','姓名5'),(66,'2022-11-07 08:13:44','6666666666','方案标题6','方案简介6','方案内容6','2022-11-07 16:13:44','账号6','姓名6'),(67,'2022-11-07 08:13:44','7777777777','方案标题7','方案简介7','方案内容7','2022-11-07 16:13:44','账号7','姓名7'),(68,'2022-11-07 08:13:44','8888888888','方案标题8','方案简介8','方案内容8','2022-11-07 16:13:44','账号8','姓名8'),(1667809083658,'2022-11-07 08:18:02','1667809116225','省道发送到发送到','省道省道省道省道省道省道','<p>按时打算打算水电费省道发送到水电费打算</p>','2022-11-07 16:18:36','11','地方');
+INSERT INTO `yingjiyuan` VALUES 
+(61,'2024-03-01 10:00:00','YJYB2024001','危险品运输泄漏应急处置预案','针对危险品运输过程中发生泄漏事故的应急处置方案','一、事故特点分析：\n1. 危险品泄漏可能导致中毒、火灾、爆炸等次生事故\n2. 泄漏物可能污染土壤、水源\n3. 事故发生在道路等开放空间，处置难度大\n\n二、应急响应程序：\n1. 驾驶员立即停车，关闭发动机\n2. 拉起警戒线，禁止明火\n3. 拨打119、110报警，同时报告公司监控中心\n4. 穿戴防护装备，检查泄漏情况\n5. 采取堵漏、围堰、覆盖等措施控制泄漏\n6. 疏散周围人员至安全区域\n7. 配合专业救援队伍进行处置\n\n三、注意事项：\n1. 切勿独自盲目处置\n2. 保持上风方向操作\n3. 泄漏物禁止直接接触\n4. 事后需进行环境和土壤检测','2024-03-01 10:00:00','admin','系统管理员'),
+(62,'2024-03-01 10:10:00','YJYB2024002','交通事故应急救援预案','危险品运输车辆发生交通事故时的应急处置方案','一、事故分级：\n1. 轻微事故：无人员伤亡，货物完好\n2. 较大事故：造成人员伤亡或货物泄漏\n3. 重大事故：引发火灾、爆炸等次生灾害\n\n二、处置流程：\n1. 保护现场，开启危险警示灯\n2. 拨打120、122报警\n3. 检查货物状态，报告监控中心\n4. 如有泄漏，按泄漏处置预案执行\n5. 配合交警和消防部门工作\n6. 做好事故现场证据保全\n\n三、特殊要求：\n1. 不得擅自离开现场\n2. 禁止移动事故车辆\n3. 保护危险品标志和证件','2024-03-01 10:10:00','admin','系统管理员'),
+(63,'2024-03-01 10:20:00','YJYB2024003','车辆火灾应急处置预案','运输车辆发生火灾时的紧急疏散和灭火方案','一、火灾类型：\n1. 电气火灾：线路短路、设备故障\n2. 货物火灾：危险品自燃或被引燃\n3. 轮胎火灾：制动过热引发\n\n二、应急措施：\n1. 立即停车，关闭总电源\n2. 取出车载灭火器扑救初期火灾\n3. 危险品火灾需使用专用灭火剂\n4. 疏散周围车辆和人员\n5. 拨打119报警，说明危险品类型\n6. 车辆无法控制时，立即撤离至安全地带\n\n三、灭火器材配置：\n1. 干粉灭火器4具（4kg/具）\n2. 二氧化碳灭火器2具\n3. 消防沙若干','2024-03-01 10:20:00','admin','系统管理员'),
+(64,'2024-03-01 10:30:00','YJYB2024004','恶劣天气安全行车预案','暴雨、大雾、冰雪等恶劣天气下的安全行车措施','一、暴雨天气：\n1. 降低车速，保持安全距离\n2. 避开低洼积水路段\n3. 开启雾灯和示廓灯\n4. 必要时在安全地点停车等待\n\n二、大雾天气：\n1. 开启雾灯、近光灯和示廓灯\n2. 降低车速至50km/h以下\n3. 加大跟车距离\n4. 禁止超车和变道\n\n三、冰雪天气：\n1. 安装防滑链\n2. 车速控制在30km/h以下\n3. 避免紧急制动和急转向\n4. 上坡时提前减档，保持动力\n\n四、应急联络：\n如遇紧急情况，立即联系公司调度中心','2024-03-01 10:30:00','admin','系统管理员'),
+(65,'2024-03-01 10:40:00','YJYB2024005','恐怖袭击防范应急预案','针对恐怖袭击和恶意破坏行为的防范和应对方案','一、防范措施：\n1. 加强驾驶员安全培训\n2. 安装GPS监控和报警系统\n3. 规划安全运输路线\n4. 配备必要的防护器材\n\n二、识别可疑情况：\n1. 车辆被跟踪或拦截\n2. 有人试图强行上车\n3. 收到恐怖威胁信息\n4. 发现可疑物品\n\n三、应急处置：\n1. 锁闭车门车窗\n2. 按动紧急报警按钮\n3. 迅速驶向最近的安全区域\n4. 拨打110报警\n5. 保护货物和自身安全\n\n四、事后处置：\n配合公安机关调查取证','2024-03-01 10:40:00','admin','系统管理员'),
+(66,'2024-03-01 10:50:00','YJYB2024006','疲劳驾驶预防管理办法','预防和处置驾驶员疲劳驾驶的管理规定','一、疲劳驾驶危害：\n1. 反应迟钝，判断力下降\n2. 操作失误风险增加\n3. 极易引发交通事故\n\n二、预防措施：\n1. 单次连续驾驶不超过4小时\n2. 24小时内累计驾驶不超过8小时\n3. 夜间驾驶不超过6小时\n4. 保持充足睡眠\n\n三、监测手段：\n1. GPS监控行驶时间和速度\n2. 车载DSM驾驶员监控系统\n3. 定期发送休息提醒\n\n四、应急处置：\n1. 发现疲劳迹象立即停车休息\n2. 到最近服务区或安全地点休整\n3. 饮用咖啡等提神饮料\n4. 严重疲劳需换人或休息','2024-03-01 10:50:00','admin','系统管理员'),
+(67,'2024-03-01 11:00:00','YJYB2024007','危险品车辆故障救援预案','运输车辆发生机械故障时的应急处置方案','一、常见故障类型：\n1. 轮胎爆胎或漏气\n2. 发动机故障\n3. 制动系统异常\n4. 电气系统故障\n\n二、应急处置：\n1. 开启危险警示灯\n2. 缓慢靠边停车\n3. 放置三角警示牌（距车150米）\n4. 拨打救援电话\n5. 做好安全警戒\n\n三、特殊要求：\n1. 危险品车辆禁止路边随意维修\n2. 需使用专业救援队伍\n3. 远离火源和热源\n4. 保持通讯畅通','2024-03-01 11:00:00','admin','系统管理员'),
+(68,'2024-03-01 11:10:00','YJYB2024008','人员伤亡急救处置预案','交通事故造成人员伤亡时的急救处置方案','一、急救原则：\n1. 先救命，后治伤\n2. 快速止血，固定骨折\n3. 保持呼吸道通畅\n4. 避免二次伤害\n\n二、急救步骤：\n1. 评估现场安全性\n2. 检查意识、呼吸、脉搏\n3. 拨打120急救电话\n4. 进行心肺复苏（如需要）\n5. 止血、包扎、固定\n6. 等待专业救援\n\n三、注意事项：\n1. 脊柱受伤者勿随意搬动\n2. 烧伤者勿撕脱衣物\n3. 昏迷者保持侧卧位\n4. 保持伤者体温\n\n四、联络方式：\n公司急救电话：400-XXX-XXXX','2024-03-01 11:10:00','admin','系统管理员');
 /*!40000 ALTER TABLE `yingjiyuan` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -285,20 +321,20 @@ CREATE TABLE `yunshucheci` (
   `weixianpinbianhao` varchar(200) DEFAULT NULL COMMENT '危险品编号',
   `weixianpinmingcheng` varchar(200) DEFAULT NULL COMMENT '危险品名称',
   `shuliang` int(11) DEFAULT NULL COMMENT '数量',
-  `qidian` varchar(200) DEFAULT NULL,
+  `qidian` varchar(200) DEFAULT NULL COMMENT '起点',
   `zhongdian` varchar(200) DEFAULT NULL COMMENT '终点',
-  `yunshulujing` longtext,
+  `yunshulujing` longtext COMMENT '运输路径',
   `yunshuzhuangtai` varchar(200) DEFAULT NULL COMMENT '运输状态',
-  `zhanghao` varchar(200) DEFAULT NULL,
-  `xingming` varchar(200) DEFAULT NULL,
-  `chepaihao` varchar(200) DEFAULT NULL,
-  `cheliangpinpai` varchar(200) DEFAULT NULL,
+  `zhanghao` varchar(200) DEFAULT NULL COMMENT '账号',
+  `xingming` varchar(200) DEFAULT NULL COMMENT '姓名',
+  `chepaihao` varchar(200) DEFAULT NULL COMMENT '车牌号',
+  `cheliangpinpai` varchar(200) DEFAULT NULL COMMENT '车辆品牌',
   `yunshushijian` datetime DEFAULT NULL COMMENT '运输时间',
   `beizhu` varchar(200) DEFAULT NULL COMMENT '备注',
-  `tupian` varchar(200) DEFAULT NULL,
+  `tupian` varchar(200) DEFAULT NULL COMMENT '图片',
   PRIMARY KEY (`id`),
   UNIQUE KEY `yunshucheci` (`yunshucheci`)
-) ENGINE=InnoDB AUTO_INCREMENT=1667809046930 DEFAULT CHARSET=utf8 COMMENT='运输车次';
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8 COMMENT='运输车次';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -307,7 +343,15 @@ CREATE TABLE `yunshucheci` (
 
 LOCK TABLES `yunshucheci` WRITE;
 /*!40000 ALTER TABLE `yunshucheci` DISABLE KEYS */;
-INSERT INTO `yunshucheci` VALUES (41,'2022-11-07 08:13:44','1111111111','危险品编号1','危险品名称1',1,'起点1','终点1','运输路径1','已发车','账号1','姓名1','车牌号1','车辆品牌1','2022-11-07 16:13:44','备注1','upload/yunshucheci_tupian1.jpg'),(42,'2022-11-07 08:13:44','2222222222','危险品编号2','危险品名称2',2,'起点2','终点2','运输路径2','已发车','账号2','姓名2','车牌号2','车辆品牌2','2022-11-07 16:13:44','备注2','upload/yunshucheci_tupian2.jpg'),(43,'2022-11-07 08:13:44','3333333333','危险品编号3','危险品名称3',3,'起点3','终点3','运输路径3','已发车','账号3','姓名3','车牌号3','车辆品牌3','2022-11-07 16:13:44','备注3','upload/yunshucheci_tupian3.jpg'),(44,'2022-11-07 08:13:44','4444444444','危险品编号4','危险品名称4',4,'起点4','终点4','运输路径4','已发车','账号4','姓名4','车牌号4','车辆品牌4','2022-11-07 16:13:44','备注4','upload/yunshucheci_tupian4.jpg'),(45,'2022-11-07 08:13:44','5555555555','危险品编号5','危险品名称5',5,'起点5','终点5','运输路径5','已发车','账号5','姓名5','车牌号5','车辆品牌5','2022-11-07 16:13:44','备注5','upload/yunshucheci_tupian5.jpg'),(46,'2022-11-07 08:13:44','6666666666','危险品编号6','危险品名称6',6,'起点6','终点6','运输路径6','已发车','账号6','姓名6','车牌号6','车辆品牌6','2022-11-07 16:13:44','备注6','upload/yunshucheci_tupian6.jpg'),(47,'2022-11-07 08:13:44','7777777777','危险品编号7','危险品名称7',7,'起点7','终点7','运输路径7','已发车','账号7','姓名7','车牌号7','车辆品牌7','2022-11-07 16:13:44','备注7','upload/yunshucheci_tupian7.jpg'),(48,'2022-11-07 08:13:44','8888888888','危险品编号8','危险品名称8',8,'起点8','终点8','运输路径8','已发车','账号8','姓名8','车牌号8','车辆品牌8','2022-11-07 16:13:44','备注8','upload/yunshucheci_tupian8.jpg'),(1667809046929,'2022-11-07 08:17:25','1667809054941','1667809034288','第一危险品',50,'北京','上海','水电费省道发送到发送到发送到发送到发送到发多少','已发车','11','地方','京W45612','丰田','2022-11-07 16:17:34','地方打算发送到水电费','upload/1667809037757.jpg');
+INSERT INTO `yunshucheci` VALUES 
+(41,'2024-03-20 06:00:00','YSCC2024032001','WB00001','液化石油气','50','燕山石化仓库','北京大兴燃气站','京港澳高速-南六环-京开高速','已发车','driver001','张伟','京A88888','东风重卡','2024-03-20 06:30:00','正常运输中','upload/ys1.jpg'),
+(42,'2024-03-20 07:00:00','YSCC2024032002','WB00002','浓硫酸','30','天津化工厂','河北保定化工厂','京津高速-京港澳高速','已到达','driver002','李强','京B66666','解放重卡','2024-03-20 07:30:00','货物已签收','upload/ys2.jpg'),
+(43,'2024-03-21 08:00:00','YSCC2024032101','WB00003','TNT炸药','10','河北迁安矿业','山西大同煤矿','京哈高速-京港澳高速-京昆高速','已发车','driver003','王磊','京C12345','重汽豪沃','2024-03-21 08:30:00','需公安护送','upload/ys3.jpg'),
+(44,'2024-03-21 09:00:00','YSCC2024032102','WB00004','液氨','25','山东齐鲁石化','河南郑州化工园','京沪高速-连霍高速-京港澳高速','运输中','driver004','刘洋','京D55555','陕汽德龙','2024-03-21 09:30:00','途经服务区休整','upload/ys4.jpg'),
+(45,'2024-03-22 06:00:00','YSCC2024032201','WB00005','乙醇','40','江苏南京化工','浙江宁波港','京沪高速-杭州湾跨海大桥','已到达','driver005','陈刚','京E77777','福田欧曼','2024-03-22 07:00:00','已卸货完成','upload/ys5.jpg'),
+(46,'2024-03-22 08:00:00','YSCC2024032202','WB00006','氰化钠','5','辽宁葫芦岛','吉林长春化工园','京哈高速-长深高速','运输中','driver006','赵军','冀A99999','解放J6','2024-03-22 08:30:00','已通过检查站','upload/ys6.jpg'),
+(47,'2024-03-23 07:00:00','YSCC2024032301','WB00007','硝酸铵','60','内蒙古包头','山西太原化肥厂','京藏高速-二广高速','已发车','driver007','孙鹏','冀B11111','东风天龙','2024-03-23 07:30:00','正常运输','upload/ys7.jpg'),
+(48,'2024-03-23 10:00:00','YSCC2024032302','WB00008','医疗废物','20','北京协和医院','北京医疗废物处理中心','市区道路-五环路-处理中心','运输中','driver008','周涛','冀C33333','重汽汕德卡','2024-03-23 10:30:00','冷藏运输中','upload/ys8.jpg');
 /*!40000 ALTER TABLE `yunshucheci` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -325,24 +369,24 @@ CREATE TABLE `yunshuxinxi` (
   `weixianpinbianhao` varchar(200) DEFAULT NULL COMMENT '危险品编号',
   `weixianpinmingcheng` varchar(200) DEFAULT NULL COMMENT '危险品名称',
   `shuliang` int(11) DEFAULT NULL COMMENT '数量',
-  `qidian` varchar(200) DEFAULT NULL,
+  `qidian` varchar(200) DEFAULT NULL COMMENT '起点',
   `zhongdian` varchar(200) DEFAULT NULL COMMENT '终点',
-  `zhuangtai` varchar(200) DEFAULT NULL,
-  `yunshulujing` longtext,
-  `zhanghao` varchar(200) DEFAULT NULL,
-  `xingming` varchar(200) DEFAULT NULL,
-  `chepaihao` varchar(200) DEFAULT NULL,
-  `cheliangpinpai` varchar(200) DEFAULT NULL,
+  `zhuangtai` varchar(200) DEFAULT NULL COMMENT '状态',
+  `yunshulujing` longtext COMMENT '运输路径',
+  `zhanghao` varchar(200) DEFAULT NULL COMMENT '账号',
+  `xingming` varchar(200) DEFAULT NULL COMMENT '姓名',
+  `chepaihao` varchar(200) DEFAULT NULL COMMENT '车牌号',
+  `cheliangpinpai` varchar(200) DEFAULT NULL COMMENT '车辆品牌',
   `kaishishijian` datetime DEFAULT NULL COMMENT '开始时间',
-  `jieshushijian` datetime DEFAULT NULL,
-  `sudu` varchar(200) DEFAULT NULL,
-  `tupian` varchar(200) DEFAULT NULL,
+  `jieshushijian` datetime DEFAULT NULL COMMENT '结束时间',
+  `sudu` varchar(200) DEFAULT NULL COMMENT '速度',
+  `tupian` varchar(200) DEFAULT NULL COMMENT '图片',
   `userid` bigint(20) DEFAULT NULL COMMENT '用户id',
   `longitude` float DEFAULT NULL COMMENT '经度',
   `latitude` float DEFAULT NULL COMMENT '纬度',
   `fulladdress` varchar(200) DEFAULT NULL COMMENT '地址',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1667809070564 DEFAULT CHARSET=utf8 COMMENT='运输信息';
+) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8 COMMENT='运输信息';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -351,11 +395,60 @@ CREATE TABLE `yunshuxinxi` (
 
 LOCK TABLES `yunshuxinxi` WRITE;
 /*!40000 ALTER TABLE `yunshuxinxi` DISABLE KEYS */;
-INSERT INTO `yunshuxinxi` VALUES (51,'2022-11-07 08:13:44','运输车次1','危险品编号1','危险品名称1',1,'起点1','终点1','运输完成','运输路径1','账号1','姓名1','车牌号1','车辆品牌1','2022-11-07 16:13:44','2022-11-07 16:13:44','速度1','upload/yunshuxinxi_tupian1.jpg',1,1,1,'宇宙银河系地球1号'),(52,'2022-11-07 08:13:44','运输车次2','危险品编号2','危险品名称2',2,'起点2','终点2','运输完成','运输路径2','账号2','姓名2','车牌号2','车辆品牌2','2022-11-07 16:13:44','2022-11-07 16:13:44','速度2','upload/yunshuxinxi_tupian2.jpg',2,2,2,'宇宙银河系地球2号'),(53,'2022-11-07 08:13:44','运输车次3','危险品编号3','危险品名称3',3,'起点3','终点3','运输完成','运输路径3','账号3','姓名3','车牌号3','车辆品牌3','2022-11-07 16:13:44','2022-11-07 16:13:44','速度3','upload/yunshuxinxi_tupian3.jpg',3,3,3,'宇宙银河系地球3号'),(54,'2022-11-07 08:13:44','运输车次4','危险品编号4','危险品名称4',4,'起点4','终点4','运输完成','运输路径4','账号4','姓名4','车牌号4','车辆品牌4','2022-11-07 16:13:44','2022-11-07 16:13:44','速度4','upload/yunshuxinxi_tupian4.jpg',4,4,4,'宇宙银河系地球4号'),(55,'2022-11-07 08:13:44','运输车次5','危险品编号5','危险品名称5',5,'起点5','终点5','运输完成','运输路径5','账号5','姓名5','车牌号5','车辆品牌5','2022-11-07 16:13:44','2022-11-07 16:13:44','速度5','upload/yunshuxinxi_tupian5.jpg',5,5,5,'宇宙银河系地球5号'),(56,'2022-11-07 08:13:44','运输车次6','危险品编号6','危险品名称6',6,'起点6','终点6','运输完成','运输路径6','账号6','姓名6','车牌号6','车辆品牌6','2022-11-07 16:13:44','2022-11-07 16:13:44','速度6','upload/yunshuxinxi_tupian6.jpg',6,6,6,'宇宙银河系地球6号'),(57,'2022-11-07 08:13:44','运输车次7','危险品编号7','危险品名称7',7,'起点7','终点7','运输完成','运输路径7','账号7','姓名7','车牌号7','车辆品牌7','2022-11-07 16:13:44','2022-11-07 16:13:44','速度7','upload/yunshuxinxi_tupian7.jpg',7,7,7,'宇宙银河系地球7号'),(58,'2022-11-07 08:13:44','运输车次8','危险品编号8','危险品名称8',8,'起点8','终点8','运输完成','运输路径8','账号8','姓名8','车牌号8','车辆品牌8','2022-11-07 16:13:44','2022-11-07 16:13:44','速度8','upload/yunshuxinxi_tupian8.jpg',8,8,8,'宇宙银河系地球8号'),(1667809070563,'2022-11-07 08:17:49','1667809054941','1667809034288','第一危险品',50,'北京','上海','运输完成','水电费省道发送到发送到发送到发送到发送到发多少','11','地方','京W45612','丰田','2022-11-07 16:18:22','2022-11-07 16:18:22','','upload/1667809037757.jpg',NULL,116.338,39.9406,'北京市西城区展览路街道北京动物园');
+INSERT INTO `yunshuxinxi` VALUES 
+(51,'2024-03-20 06:30:00','YSCC2024032001','WB00001','液化石油气',50,'燕山石化仓库','北京大兴燃气站','运输中','京港澳高速-南六环-京开高速','driver001','张伟','京A88888','东风重卡','2024-03-20 06:30:00',NULL,'72','upload/ys1.jpg',1,116.4074,39.9042,'北京市朝阳区东四环'),
+(52,'2024-03-20 07:30:00','YSCC2024032002','WB00002','浓硫酸',30,'天津化工厂','河北保定化工厂','运输完成','京津高速-京港澳高速','driver002','李强','京B66666','解放重卡','2024-03-20 07:30:00','2024-03-20 11:30:00','65','upload/ys2.jpg',2,116.338,39.9406,'北京市西城区南礼士路'),
+(53,'2024-03-21 08:30:00','YSCC2024032101','WB00003','TNT炸药',10,'河北迁安矿业','山西大同煤矿','运输中','京哈高速-京港澳高速-京昆高速','driver003','王磊','京C12345','重汽豪沃','2024-03-21 08:30:00',NULL,'68','upload/ys3.jpg',3,115.789,39.123,'河北省廊坊市广阳区'),
+(54,'2024-03-21 09:30:00','YSCC2024032102','WB00004','液氨',25,'山东齐鲁石化','河南郑州化工园','运输中','京沪高速-连霍高速-京港澳高速','driver004','刘洋','京D55555','陕汽德龙','2024-03-21 09:30:00',NULL,'75','upload/ys4.jpg',4,116.588,40.123,'山东省德州市德城区'),
+(55,'2024-03-22 07:00:00','YSCC2024032201','WB00005','乙醇',40,'江苏南京化工','浙江宁波港','运输完成','京沪高速-杭州湾跨海大桥','driver005','陈刚','京E77777','福田欧曼','2024-03-22 07:00:00','2024-03-22 14:00:00','80','upload/ys5.jpg',5,121.520,31.230,'上海市嘉定区安亭镇'),
+(56,'2024-03-22 08:30:00','YSCC2024032202','WB00006','氰化钠',5,'辽宁葫芦岛','吉林长春化工园','运输中','京哈高速-长深高速','driver006','赵军','冀A99999','解放J6','2024-03-22 08:30:00',NULL,'70','upload/ys6.jpg',6,123.456,41.789,'辽宁省锦州市古塔区'),
+(57,'2024-03-23 07:30:00','YSCC2024032301','WB00007','硝酸铵',60,'内蒙古包头','山西太原化肥厂','运输中','京藏高速-二广高速','driver007','孙鹏','冀B11111','东风天龙','2024-03-23 07:30:00',NULL,'62','upload/ys7.jpg',7,111.758,40.823,'内蒙古自治区呼和浩特市回民区'),
+(58,'2024-03-23 10:30:00','YSCC2024032302','WB00008','医疗废物',20,'北京协和医院','北京医疗废物处理中心','运输中','市区道路-五环路-处理中心','driver008','周涛','冀C33333','重汽汕德卡','2024-03-23 10:30:00',NULL,'45','upload/ys8.jpg',8,116.456,39.987,'北京市海淀区中关村');
 /*!40000 ALTER TABLE `yunshuxinxi` ENABLE KEYS */;
 UNLOCK TABLES;
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
+--
+-- Table structure for table `shishijiankong`
+--
+
+DROP TABLE IF EXISTS `shishijiankong`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `shishijiankong` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `addtime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `chepaihao` varchar(200) DEFAULT NULL COMMENT '车牌号',
+  `fence_longitude` float DEFAULT NULL COMMENT '电子围栏中心经度',
+  `fence_latitude` float DEFAULT NULL COMMENT '电子围栏中心纬度',
+  `fence_radius` int(11) DEFAULT '5000' COMMENT '电子围栏半径（米）',
+  `fence_type` varchar(200) DEFAULT 'circle' COMMENT '围栏类型：circle-圆形，rectangle-矩形',
+  `status` int(11) DEFAULT '1' COMMENT '是否启用：0-禁用，1-启用',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COMMENT='实时监控配置表';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `shishijiankong`
+--
+
+LOCK TABLES `shishijiankong` WRITE;
+/*!40000 ALTER TABLE `shishijiankong` DISABLE KEYS */;
+INSERT INTO `shishijiankong` VALUES 
+(1,NOW(),'京A88888',116.397428,39.90923,5000,'circle',1),
+(2,NOW(),'京B66666',116.338,39.9406,5000,'circle',1),
+(3,NOW(),'京C12345',115.789,39.123,5000,'circle',1),
+(4,NOW(),'京D55555',116.588,40.123,5000,'circle',1),
+(5,NOW(),'京E77777',121.520,31.230,5000,'circle',1),
+(6,NOW(),'冀A99999',123.456,41.789,5000,'circle',1),
+(7,NOW(),'冀B11111',111.758,40.823,5000,'circle',1),
+(8,NOW(),'冀C33333',116.456,39.987,5000,'circle',1);
+/*!40000 ALTER TABLE `shishijiankong` ENABLE KEYS */;
+UNLOCK TABLES;
+
+-- 管理员账号：admin / admin
+-- 驾驶员账号示例：driver001 / 123456
+
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
 /*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
@@ -364,4 +457,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-12-06 19:03:28
+-- Dump completed

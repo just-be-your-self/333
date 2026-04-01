@@ -3,7 +3,7 @@
     <div class="container" :style='{"minHeight":"100vh","alignItems":"center","background":"url(http://codegen.caihongy.cn/20221010/3d359a9094d045b5a445e8d903a25a5c.jpg)","display":"flex","width":"100%","backgroundSize":"cover","backgroundPosition":"center center","backgroundRepeat":"no-repeat","justifyContent":"center"}'>
 
       <el-form :style='{"padding":"40px 20px 40px","boxShadow":"0 0px 0px rgba(64, 158, 255, .8)","margin":"0","borderRadius":"20px  80px","background":"-webkit-linear-gradient(top,#fff,#ccc)","width":"800px","position":"relative","height":"auto"}'>
-        <div v-if="true" :style='{"margin":"0 0 10px 0","color":"#4d90ef","textAlign":"center","width":"100%","letterSpacing":"3px","lineHeight":"44px","fontSize":"36px","textShadow":"0px 0px 0px #4d90ef"}' class="title-container">危险物品运输管理系统登录</div>
+        <div v-if="true" :style='{"margin":"0 0 10px 0","color":"#4d90ef","textAlign":"center","width":"100%","letterSpacing":"3px","lineHeight":"44px","fontSize":"36px","textShadow":"0px 0px 0px #4d90ef"}' class="title-container">危险品物流管理系统登录</div>
         <div class="list-item" :style='{"width":"80%","margin":"0 auto 10px","alignItems":"center","flexWrap":"wrap","display":"flex"}'>
           <div v-if="true" class="lable" :style='{"margin":"20px 0px 0px 80px","color":"#666","left":"0","width":"64px","lineHeight":"40px","fontSize":"16px","position":"absolute"}'>用户名</div>
           <input :style='{"border":"1px solid #ddd","padding":"0 24px","outline":"0px solid #efefef","margin":"20px 0px 0px  45px","color":"#999","outlineOffset":"0px","borderRadius":"80px  40px","width":"100%","fontSize":"14px","height":"40px"}' placeholder="请输入用户名" name="username" type="text" v-model="rulesForm.username">
@@ -180,7 +180,7 @@ export default {
   background-size: cover;
       background: url(http://codegen.caihongy.cn/20221010/3d359a9094d045b5a445e8d903a25a5c.jpg);
         
-  .list-item /deep/ .el-input .el-input__inner {
+  .list-item ::v-deep .el-input .el-input__inner {
 		border: 1px solid #ddd;
 		border-radius: 80px  40px;
 		padding: 0 24px;
@@ -193,7 +193,7 @@ export default {
 		height: 40px;
 	  }
   
-  .list-code /deep/ .el-input .el-input__inner {
+  .list-code ::v-deep .el-input .el-input__inner {
   	  	border: 1px solid #ddd;
   	  	border-radius: 80px  40px;
   	  	padding: 0 24px;
@@ -204,7 +204,7 @@ export default {
   	  	height: 40px;
   	  }
 
-  .list-type /deep/ .el-radio__input .el-radio__inner {
+  .list-type ::v-deep .el-radio__input .el-radio__inner {
 		border: 1px solid #2477ec;
 		color: #fff;
 		background: rgba(53, 53, 53, 0);
@@ -212,18 +212,18 @@ export default {
 		border-color: #666666;
 		height: 18px;
 	  }
-  .list-type /deep/ .el-radio__input.is-checked .el-radio__inner {
+  .list-type ::v-deep .el-radio__input.is-checked .el-radio__inner {
         border: 1px solid #2477ec;
         background: #4d90ef;
         width: 18px;
         border-color: rgba(64, 158, 255, 1);
         height: 18px;
       }
-  .list-type /deep/ .el-radio__label {
+  .list-type ::v-deep .el-radio__label {
 		color: #666;
 		font-size: 16px;
 	  }
-  .list-type /deep/ .el-radio__input.is-checked+.el-radio__label {
+  .list-type ::v-deep .el-radio__input.is-checked+.el-radio__label {
         color: #666;
         font-size: 16px;
       }

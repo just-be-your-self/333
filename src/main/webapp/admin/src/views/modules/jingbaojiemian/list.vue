@@ -5,25 +5,37 @@
 			<el-form class="center-form-pv" :style='{"margin":"0 0 20px"}' :inline="true" :model="searchForm">
 				<el-row :style='{"display":"block"}' >
 					<div :style='{"margin":"0 10px 0 0","display":"inline-block"}'>
-						<label :style='{"margin":"0 10px 0 0","color":"#666","display":"inline-block","lineHeight":"40px","fontSize":"14px","fontWeight":"500","height":"40px"}' class="item-label">姓名</label>
-						<el-input v-model="searchForm.xingming" placeholder="姓名" clearable></el-input>
+						<label :style='{"margin":"0 10px 0 0","color":"#666","display":"inline-block","lineHeight":"40px","fontSize":"14px","fontWeight":"500","height":"40px"}' class="item-label">车牌号</label>
+						<el-input v-model="searchForm.chepaihao" placeholder="车牌号" clearable></el-input>
 					</div>
 					<div :style='{"margin":"0 10px 0 0","display":"inline-block"}' class="select">
-						<label :style='{"margin":"0 10px 0 0","color":"#666","display":"inline-block","lineHeight":"40px","fontSize":"14px","fontWeight":"500","height":"40px"}' class="item-label">是否通过</label>
-						<el-select  @change="sfshChange" clearable v-model="searchForm.sfsh" placeholder="是否通过">
-							<el-option v-for="(item,index) in sfshOptions" v-bind:key="index" :label="item" :value="item"></el-option>
+						<label :style='{"margin":"0 10px 0 0","color":"#666","display":"inline-block","lineHeight":"40px","fontSize":"14px","fontWeight":"500","height":"40px"}' class="item-label">警报类型</label>
+						<el-select clearable v-model="searchForm.jingleixing" placeholder="警报类型" @change="search">
+							<el-option label="超速警报" value="超速警报"></el-option>
+							<el-option label="偏离警报" value="偏离警报"></el-option>
+						</el-select>
+					</div>
+					<div :style='{"margin":"0 10px 0 0","display":"inline-block"}' class="select">
+						<label :style='{"margin":"0 10px 0 0","color":"#666","display":"inline-block","lineHeight":"40px","fontSize":"14px","fontWeight":"500","height":"40px"}' class="item-label">处理状态</label>
+						<el-select clearable v-model="searchForm.sfsh" placeholder="处理状态" @change="search">
+							<el-option label="待处理" value="待审核"></el-option>
+							<el-option label="已处理" value="是"></el-option>
+							<el-option label="已驳回" value="否"></el-option>
 						</el-select>
 					</div>
 					<el-button :style='{"border":"0","cursor":"pointer","padding":"0 40px","outline":"none","color":"#fff","borderRadius":"20px 40px","background":"#333","width":"auto","fontSize":"14px","height":"40px"}' type="success" @click="search()">查询</el-button>
+					<el-button :style='{"border":"1px solid #67C23A","cursor":"pointer","padding":"0 20px","margin":"0 10px 0 0","outline":"none","color":"#67C23A","borderRadius":"20px 40px","background":"#fff","width":"auto","fontSize":"14px","height":"40px"}' type="success" @click="refreshData()">刷新</el-button>
+					<el-switch
+					  v-model="autoRefresh"
+					  active-text="自动刷新"
+					  inactive-text="停止刷新"
+					  :style='{"display":"inline-block","margin":"0 0 0 10px"}'>
+					</el-switch>
 				</el-row>
 
 				<el-row :style='{"margin":"20px 0","display":"flex"}'>
-					<el-button :style='{"border":"0","cursor":"pointer","padding":"0 24px","margin":"0 10px 0 0","outline":"none","color":"#fff","borderRadius":"20px 40px","background":"#5497f2","width":"auto","fontSize":"14px","height":"40px"}' v-if="isAuth('jingbaojiemian','新增')" type="success" @click="addOrUpdateHandler()">新增</el-button>
 					<el-button :style='{"border":"0","cursor":"pointer","padding":"0 24px","margin":"0 10px 0 5px","outline":"none","color":"#fff","borderRadius":"20px 40px","background":"rgba(255, 0, 0, 1)","width":"auto","fontSize":"14px","height":"40px"}' v-if="isAuth('jingbaojiemian','删除')" :disabled="dataListSelections.length <= 0" type="danger" @click="deleteHandler()">删除</el-button>
-
-
-
-
+					<span :style='{"margin":"0 0 0 10px","color":"#999","lineHeight":"40px"}'>共 {{totalPage}} 条警报记录</span>
 				</el-row>
 			</el-form>
 			
@@ -37,59 +49,66 @@
 				@selection-change="selectionChangeHandler">
 					<el-table-column :resizable='true' type="selection" align="center" width="50"></el-table-column>
 					<el-table-column :resizable='true' :sortable='false' label="索引" type="index" width="50" />
-					<el-table-column :resizable='true' :sortable='false'  
+					<el-table-column :resizable='true' :sortable='false'
 						prop="biaoti"
-					label="标题">
+					label="警报标题">
 						<template slot-scope="scope">
 							{{scope.row.biaoti}}
 						</template>
 					</el-table-column>
-					<el-table-column :resizable='true' :sortable='false'  
-						prop="dianhua"
-					label="电话">
-						<template slot-scope="scope">
-							{{scope.row.dianhua}}
-						</template>
-					</el-table-column>
-					<el-table-column :resizable='true' :sortable='false'  
+					<el-table-column :resizable='true' :sortable='false'
 						prop="jingbaoyuanyin"
 					label="警报原因">
 						<template slot-scope="scope">
 							{{scope.row.jingbaoyuanyin}}
 						</template>
 					</el-table-column>
-					<el-table-column :resizable='true' :sortable='false'  
+					<el-table-column :resizable='true' :sortable='false'
+						prop="chepaihao"
+					label="车牌号">
+						<template slot-scope="scope">
+							{{scope.row.chepaihao}}
+						</template>
+					</el-table-column>
+					<el-table-column :resizable='true' :sortable='false'
+						prop="xingming"
+					label="驾驶员">
+						<template slot-scope="scope">
+							{{scope.row.xingming}}
+						</template>
+					</el-table-column>
+					<el-table-column :resizable='true' :sortable='false'
+						prop="weizhi"
+					label="位置">
+						<template slot-scope="scope">
+							{{scope.row.weizhi}}
+						</template>
+					</el-table-column>
+					<el-table-column :resizable='true' :sortable='false'
+						prop="sudu"
+					label="速度">
+						<template slot-scope="scope">
+							{{scope.row.sudu}}
+						</template>
+					</el-table-column>
+					<el-table-column :resizable='true' :sortable='false'
 						prop="jingbaoshijian"
 					label="警报时间">
 						<template slot-scope="scope">
 							{{scope.row.jingbaoshijian}}
 						</template>
 					</el-table-column>
-					<el-table-column :resizable='true' :sortable='false'  
-						prop="zhanghao"
-					label="账号">
+					<el-table-column :resizable='true' :sortable='false' prop="sfsh" label="处理状态">
 						<template slot-scope="scope">
-							{{scope.row.zhanghao}}
+							<span style="margin-right:10px" v-if="scope.row.sfsh=='是' || scope.row.sfsh=='通过'">已处理</span>
+							<span style="margin-right:10px" v-if="scope.row.sfsh=='否'">已驳回</span>
+							<span style="margin-right:10px;color:#E6A23C;font-weight:bold;" v-if="scope.row.sfsh=='待审核'">待处理</span>
 						</template>
 					</el-table-column>
-					<el-table-column :resizable='true' :sortable='false'  
-						prop="xingming"
-					label="姓名">
+					<el-table-column :resizable='true' :sortable='false' prop="shhf" label="处理备注"></el-table-column>
+					<el-table-column :resizable='true' :sortable='false' v-if="isAuth('jingbaojiemian','审核')" prop="sfsh" label="处理">
 						<template slot-scope="scope">
-							{{scope.row.xingming}}
-						</template>
-					</el-table-column>
-					<el-table-column :resizable='true' :sortable='false' prop="shhf" label="审核回复"></el-table-column>
-					<el-table-column :resizable='true' :sortable='false' prop="sfsh" label="审核状态">
-						<template slot-scope="scope">
-							<span style="margin-right:10px" v-if="scope.row.sfsh=='是'">通过</span>
-							<span style="margin-right:10px" v-if="scope.row.sfsh=='否'">未通过</span>
-							<span style="margin-right:10px" v-if="scope.row.sfsh=='待审核'">待审核</span>
-						</template>
-					</el-table-column>
-					<el-table-column :resizable='true' :sortable='false' v-if="isAuth('jingbaojiemian','审核')" prop="sfsh" label="审核">
-						<template slot-scope="scope">
-							<el-button  type="text" size="small" @click="shDialog(scope.row)">审核</el-button>
+							<el-button  type="text" size="small" @click="shDialog(scope.row)">处理</el-button>
 						</template>
 					</el-table-column>
 					<el-table-column width="300" label="操作">
@@ -126,21 +145,66 @@
 		<add-or-update v-if="addOrUpdateFlag" :parent="this" ref="addOrUpdate"></add-or-update>
 
 
-		<el-dialog title="审核" :visible.sync="sfshVisiable" width="50%">
-			<el-form ref="form" :model="form" label-width="80px">
-				<el-form-item label="审核状态">
-					<el-select v-model="shForm.sfsh" placeholder="审核状态">
-						<el-option label="通过" value="是"></el-option>
-						<el-option label="不通过" value="否"></el-option>
-						<el-option label="待审核" value="待审核"></el-option>
-					</el-select>
-				</el-form-item>
-				<el-form-item label="内容">
-					<el-input type="textarea" :rows="8" v-model="shForm.shhf"></el-input>
+		<el-dialog title="处理警报" :visible.sync="sfshVisiable" width="60%">
+			<el-form ref="form" :model="shForm" label-width="100px">
+				<el-row>
+					<el-col :span="12">
+						<el-form-item label="警报标题">
+							<el-input v-model="shForm.biaoti" readonly></el-input>
+						</el-form-item>
+					</el-col>
+					<el-col :span="12">
+						<el-form-item label="车牌号">
+							<el-input v-model="shForm.chepaihao" readonly></el-input>
+						</el-form-item>
+					</el-col>
+				</el-row>
+				<el-row>
+					<el-col :span="12">
+						<el-form-item label="警报原因">
+							<el-input v-model="shForm.jingbaoyuanyin" readonly type="textarea"></el-input>
+						</el-form-item>
+					</el-col>
+					<el-col :span="12">
+						<el-form-item label="位置">
+							<el-input v-model="shForm.weizhi" readonly></el-input>
+						</el-form-item>
+					</el-col>
+				</el-row>
+				<el-row>
+					<el-col :span="12">
+						<el-form-item label="速度">
+							<el-input v-model="shForm.sudu" readonly></el-input>
+						</el-form-item>
+					</el-col>
+					<el-col :span="12">
+						<el-form-item label="警报时间">
+							<el-input v-model="shForm.jingbaoshijian" readonly></el-input>
+						</el-form-item>
+					</el-col>
+				</el-row>
+				<el-row>
+					<el-col :span="12">
+						<el-form-item label="驾驶员">
+							<el-input v-model="shForm.xingming" readonly></el-input>
+						</el-form-item>
+					</el-col>
+					<el-col :span="12">
+						<el-form-item label="处理状态">
+							<el-select v-model="shForm.sfsh" placeholder="处理状态">
+								<el-option label="已处理" value="是"></el-option>
+								<el-option label="已驳回" value="否"></el-option>
+								<el-option label="待处理" value="待审核"></el-option>
+							</el-select>
+						</el-form-item>
+					</el-col>
+				</el-row>
+				<el-form-item label="处理备注">
+					<el-input type="textarea" :rows="4" v-model="shForm.shhf" placeholder="请输入处理备注"></el-input>
 				</el-form-item>
 			</el-form>
 			<span slot="footer" class="dialog-footer">
-				<el-button @click="shDialog">取 消</el-button>
+				<el-button @click="sfshVisiable = false">取 消</el-button>
 				<el-button type="primary" @click="shHandler">确 定</el-button>
 			</span>
 		</el-dialog>
@@ -157,7 +221,10 @@ export default {
   data() {
     return {
       searchForm: {
-        key: ""
+        key: "",
+        jingleixing: "",
+        chepaihao: "",
+        sfsh: ""
       },
       form:{},
       dataList: [],
@@ -177,6 +244,9 @@ export default {
       chartVisiable5: false,
       addOrUpdateFlag:false,
       layouts: ["total","prev","pager","next","sizes","jumper"],
+      // 自动刷新定时器
+      refreshTimer: null,
+      autoRefresh: true,
 
 
     };
@@ -187,6 +257,12 @@ export default {
     this.contentStyleChange()
   },
   mounted() {
+    // 启动自动刷新，每5秒刷新一次
+    this.startAutoRefresh()
+  },
+  beforeDestroy() {
+    // 组件销毁时停止刷新
+    this.stopAutoRefresh()
   },
   filters: {
     htmlfilter: function (val) {
@@ -197,6 +273,29 @@ export default {
     AddOrUpdate,
   },
   methods: {
+
+    // 启动自动刷新
+    startAutoRefresh() {
+      if (this.refreshTimer) return
+      this.refreshTimer = setInterval(() => {
+        if (this.autoRefresh && this.pageIndex === 1) {
+          this.getDataList()
+        }
+      }, 5000) // 每5秒刷新一次
+    },
+
+    // 停止自动刷新
+    stopAutoRefresh() {
+      if (this.refreshTimer) {
+        clearInterval(this.refreshTimer)
+        this.refreshTimer = null
+      }
+    },
+
+    // 手动刷新
+    refreshData() {
+      this.getDataList()
+    },
 
     contentStyleChange() {
       this.contentPageStyleChange()
@@ -227,6 +326,10 @@ export default {
     init () {
         this.sfshOptions = "是,否,待审核".split(',');
     },
+    // 警报类型选择变化
+    jingleixingChange() {
+      this.search()
+    },
     search() {
       this.pageIndex = 1;
       this.getDataList();
@@ -241,33 +344,15 @@ export default {
         sort: 'id',
         order: 'desc',
       }
-          if(this.searchForm.sfsh!='' && this.searchForm.sfsh!=undefined){
-            params['sfsh'] = this.searchForm.sfsh
-          }
-          if(this.searchForm.sfsh!='' && this.searchForm.sfsh!=undefined){
-            params['sfsh'] = this.searchForm.sfsh
-          }
-          if(this.searchForm.sfsh!='' && this.searchForm.sfsh!=undefined){
-            params['sfsh'] = this.searchForm.sfsh
-          }
-          if(this.searchForm.sfsh!='' && this.searchForm.sfsh!=undefined){
-            params['sfsh'] = this.searchForm.sfsh
-          }
-          if(this.searchForm.sfsh!='' && this.searchForm.sfsh!=undefined){
-            params['sfsh'] = this.searchForm.sfsh
-          }
-          if(this.searchForm.xingming!='' && this.searchForm.xingming!=undefined){
-            params['xingming'] = '%' + this.searchForm.xingming + '%'
-          }
-          if(this.searchForm.sfsh!='' && this.searchForm.sfsh!=undefined){
-            params['sfsh'] = this.searchForm.sfsh
-          }
-          if(this.searchForm.sfsh!='' && this.searchForm.sfsh!=undefined){
-            params['sfsh'] = this.searchForm.sfsh
-          }
-          if(this.searchForm.sfsh!='' && this.searchForm.sfsh!=undefined){
-            params['sfsh'] = this.searchForm.sfsh
-          }
+      if(this.searchForm.chepaihao != '' && this.searchForm.chepaihao != undefined){
+        params['chepaihao'] = '%' + this.searchForm.chepaihao + '%'
+      }
+      if(this.searchForm.jingleixing != '' && this.searchForm.jingleixing != undefined){
+        params['jingleixing'] = this.searchForm.jingleixing
+      }
+      if(this.searchForm.sfsh != '' && this.searchForm.sfsh != undefined){
+        params['sfsh'] = this.searchForm.sfsh
+      }
       this.$http({
         url: "jingbaojiemian/page",
         method: "get",
@@ -316,11 +401,13 @@ export default {
       if(row){
         this.shForm = {
           biaoti: row.biaoti,
-          dianhua: row.dianhua,
-          jingbaoyuanyin: row.jingbaoyuanyin,
-          jingbaoshijian: row.jingbaoshijian,
-          zhanghao: row.zhanghao,
+          jingleixing: row.jingleixing,
+          chepaihao: row.chepaihao,
           xingming: row.xingming,
+          jingbaoyuanyin: row.jingbaoyuanyin,
+          weizhi: row.weizhi,
+          sudu: row.sudu,
+          jingbaoshijian: row.jingbaoshijian,
           sfsh: row.sfsh,
           shhf: row.shhf,
           id: row.id
@@ -410,7 +497,7 @@ export default {
 	}
 	
 	// form
-	.center-form-pv .el-input /deep/ .el-input__inner {
+	.center-form-pv .el-input ::v-deep .el-input__inner {
 				border: 1px solid #e5e5e5;
 				border-radius: 20px 40px;
 				padding: 0 12px;
@@ -422,7 +509,7 @@ export default {
 				height: 40px;
 			}
 	
-	.center-form-pv .el-select /deep/ .el-input__inner {
+	.center-form-pv .el-select ::v-deep .el-input__inner {
 				border: 1px solid #e5e5e5;
 				border-radius: 20px 40px;
 				padding: 0 10px;
@@ -434,7 +521,7 @@ export default {
 				height: 40px;
 			}
 	
-	.center-form-pv .el-date-editor /deep/ .el-input__inner {
+	.center-form-pv .el-date-editor ::v-deep .el-input__inner {
 				border: 1px solid #e5e5e5;
 				border-radius: 20px 40px;
 				padding: 0 10px 0 30px;
@@ -447,17 +534,17 @@ export default {
 			}
 	
 	// table
-	.el-table /deep/ .el-table__header-wrapper thead {
+	.el-table ::v-deep .el-table__header-wrapper thead {
 				color: #555;
 				font-weight: 500;
 				width: 100%;
 			}
 	
-	.el-table /deep/ .el-table__header-wrapper thead tr {
+	.el-table ::v-deep .el-table__header-wrapper thead tr {
 				background: #fff;
 			}
 	
-	.el-table /deep/ .el-table__header-wrapper thead tr th {
+	.el-table ::v-deep .el-table__header-wrapper thead tr th {
 				padding: 12px 0;
 				color: #fff;
 				background: -webkit-linear-gradient(top,#4fa3e9,#3d79cf);
@@ -467,7 +554,7 @@ export default {
 				text-align: left;
 			}
 
-	.el-table /deep/ .el-table__header-wrapper thead tr th .cell {
+	.el-table ::v-deep .el-table__header-wrapper thead tr th .cell {
 				padding: 0 10px;
 				word-wrap: normal;
 				word-break: break-all;
@@ -482,15 +569,15 @@ export default {
 			}
 
 	
-	.el-table /deep/ .el-table__body-wrapper tbody {
+	.el-table ::v-deep .el-table__body-wrapper tbody {
 				width: 100%;
 			}
 
-	.el-table /deep/ .el-table__body-wrapper tbody tr {
+	.el-table ::v-deep .el-table__body-wrapper tbody tr {
 				background: #fff;
 			}
 	
-	.el-table /deep/ .el-table__body-wrapper tbody tr td {
+	.el-table ::v-deep .el-table__body-wrapper tbody tr td {
 				padding: 12px 0;
 				color: #555;
 				background: #fff;
@@ -501,7 +588,7 @@ export default {
 			}
 	
 		
-	.el-table /deep/ .el-table__body-wrapper tbody tr:hover td {
+	.el-table ::v-deep .el-table__body-wrapper tbody tr:hover td {
 				padding: 12px 0;
 				color: #555555;
 				background: #f7f7f7;
@@ -511,7 +598,7 @@ export default {
 				text-align: left;
 			}
 	
-	.el-table /deep/ .el-table__body-wrapper tbody tr td {
+	.el-table ::v-deep .el-table__body-wrapper tbody tr td {
 				padding: 12px 0;
 				color: #555;
 				background: #fff;
@@ -521,7 +608,7 @@ export default {
 				text-align: left;
 			}
 
-	.el-table /deep/ .el-table__body-wrapper tbody tr td .cell {
+	.el-table ::v-deep .el-table__body-wrapper tbody tr td .cell {
 				padding: 0 10px;
 				overflow: hidden;
 				word-break: break-all;
@@ -531,7 +618,7 @@ export default {
 			}
 	
 	// pagination
-	.main-content .el-pagination /deep/ .el-pagination__total {
+	.main-content .el-pagination ::v-deep .el-pagination__total {
 				margin: 0 10px 0 0;
 				color: #666;
 				font-weight: 400;
@@ -542,7 +629,7 @@ export default {
 				height: 28px;
 			}
 	
-	.main-content .el-pagination /deep/ .btn-prev {
+	.main-content .el-pagination ::v-deep .btn-prev {
 				border: none;
 				border-radius: 2px;
 				padding: 0 5px;
@@ -557,7 +644,7 @@ export default {
 				height: 28px;
 			}
 	
-	.main-content .el-pagination /deep/ .btn-next {
+	.main-content .el-pagination ::v-deep .btn-next {
 				border: none;
 				border-radius: 2px;
 				padding: 0 5px;
@@ -572,7 +659,7 @@ export default {
 				height: 28px;
 			}
 	
-	.main-content .el-pagination /deep/ .btn-prev:disabled {
+	.main-content .el-pagination ::v-deep .btn-prev:disabled {
 				border: none;
 				cursor: not-allowed;
 				border-radius: 4px 8px;
@@ -587,7 +674,7 @@ export default {
 				height: 28px;
 			}
 	
-	.main-content .el-pagination /deep/ .btn-next:disabled {
+	.main-content .el-pagination ::v-deep .btn-next:disabled {
 				border: none;
 				cursor: not-allowed;
 				border-radius: 4px 8px;
@@ -602,14 +689,14 @@ export default {
 				height: 28px;
 			}
 
-	.main-content .el-pagination /deep/ .el-pager {
+	.main-content .el-pagination ::v-deep .el-pager {
 				padding: 0;
 				margin: 0;
 				display: inline-block;
 				vertical-align: top;
 			}
 
-	.main-content .el-pagination /deep/ .el-pager .number {
+	.main-content .el-pagination ::v-deep .el-pager .number {
 				cursor: pointer;
 				padding: 0 4px;
 				margin: 0 5px;
@@ -625,7 +712,7 @@ export default {
 				height: 28px;
 			}
 	
-	.main-content .el-pagination /deep/ .el-pager .number:hover {
+	.main-content .el-pagination ::v-deep .el-pager .number:hover {
 				cursor: pointer;
 				padding: 0 4px;
 				margin: 0 5px;
@@ -641,7 +728,7 @@ export default {
 				height: 28px;
 			}
 	
-	.main-content .el-pagination /deep/ .el-pager .number.active {
+	.main-content .el-pagination ::v-deep .el-pager .number.active {
 				cursor: default;
 				padding: 0 4px;
 				margin: 0 5px;
@@ -657,7 +744,7 @@ export default {
 				height: 28px;
 			}
 	
-	.main-content .el-pagination /deep/ .el-pagination__sizes {
+	.main-content .el-pagination ::v-deep .el-pagination__sizes {
 				display: inline-block;
 				vertical-align: top;
 				font-size: 13px;
@@ -665,13 +752,13 @@ export default {
 				height: 28px;
 			}
 	
-	.main-content .el-pagination /deep/ .el-pagination__sizes .el-input {
+	.main-content .el-pagination ::v-deep .el-pagination__sizes .el-input {
 				margin: 0 5px;
 				width: 100px;
 				position: relative;
 			}
 	
-	.main-content .el-pagination /deep/ .el-pagination__sizes .el-input .el-input__inner {
+	.main-content .el-pagination ::v-deep .el-pagination__sizes .el-input .el-input__inner {
 				border: 1px solid #DCDFE6;
 				cursor: pointer;
 				padding: 0 25px 0 8px;
@@ -687,14 +774,14 @@ export default {
 				height: 28px;
 			}
 	
-	.main-content .el-pagination /deep/ .el-pagination__sizes .el-input span.el-input__suffix {
+	.main-content .el-pagination ::v-deep .el-pagination__sizes .el-input span.el-input__suffix {
 				top: 0;
 				position: absolute;
 				right: 0;
 				height: 100%;
 			}
 	
-	.main-content .el-pagination /deep/ .el-pagination__sizes .el-input .el-input__suffix .el-select__caret {
+	.main-content .el-pagination ::v-deep .el-pagination__sizes .el-input .el-input__suffix .el-select__caret {
 				cursor: pointer;
 				color: #C0C4CC;
 				width: 25px;
@@ -703,7 +790,7 @@ export default {
 				text-align: center;
 			}
 	
-	.main-content .el-pagination /deep/ .el-pagination__jump {
+	.main-content .el-pagination ::v-deep .el-pagination__jump {
 				margin: 0 0 0 24px;
 				color: #606266;
 				display: inline-block;
@@ -713,7 +800,7 @@ export default {
 				height: 28px;
 			}
 	
-	.main-content .el-pagination /deep/ .el-pagination__jump .el-input {
+	.main-content .el-pagination ::v-deep .el-pagination__jump .el-input {
 				border-radius: 3px;
 				padding: 0 2px;
 				margin: 0 5px;
@@ -726,7 +813,7 @@ export default {
 				height: 28px;
 			}
 	
-	.main-content .el-pagination /deep/ .el-pagination__jump .el-input .el-input__inner {
+	.main-content .el-pagination ::v-deep .el-pagination__jump .el-input .el-input__inner {
 				border: 1px solid #DCDFE6;
 				cursor: pointer;
 				padding: 0 3px;

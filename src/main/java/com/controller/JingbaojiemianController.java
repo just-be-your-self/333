@@ -59,15 +59,14 @@ public class JingbaojiemianController {
      * 后端列表
      */
     @RequestMapping("/page")
-    public R page(@RequestParam Map<String, Object> params,JingbaojiemianEntity jingbaojiemian, 
+    public R page(@RequestParam Map<String, Object> params,JingbaojiemianEntity jingbaojiemian,
 		HttpServletRequest request){
 
 		String tableName = request.getSession().getAttribute("tableName").toString();
-		if(tableName.equals("jiashiyuan")) {
+		if(tableName != null && tableName.equals("jiashiyuan")) {
 			jingbaojiemian.setZhanghao((String)request.getSession().getAttribute("username"));
 		}
         EntityWrapper<JingbaojiemianEntity> ew = new EntityWrapper<JingbaojiemianEntity>();
-
 
 		PageUtils page = jingbaojiemianService.queryPage(params, MPUtil.sort(MPUtil.between(MPUtil.likeOrEq(ew, jingbaojiemian), params), params));
         return R.ok().put("data", page);

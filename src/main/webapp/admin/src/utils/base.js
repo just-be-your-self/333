@@ -9,7 +9,7 @@ const base = {
     },
     getProjectName(){
         return {
-            projectName: "危险物品运输管理系统"
+            projectName: "危险品物流管理系统"
         } 
     }
 }

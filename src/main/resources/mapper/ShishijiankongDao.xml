@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dao.ShishijiankongDao">
+
+    <resultMap type="com.entity.ShishijiankongEntity" id="shishijiankongMap">
+        <result property="id" column="id"/>
+        <result property="chepaihao" column="chepaihao"/>
+        <result property="fenceLongitude" column="fence_longitude"/>
+        <result property="fenceLatitude" column="fence_latitude"/>
+        <result property="fenceRadius" column="fence_radius"/>
+        <result property="fenceType" column="fence_type"/>
+        <result property="status" column="status"/>
+        <result property="addtime" column="addtime"/>
+    </resultMap>
+
+    <select id="selectListView"
+        resultType="com.entity.ShishijiankongEntity" >
+        SELECT shishijiankong.* FROM shishijiankong shishijiankong
+        <where> 1=1 ${ew.sqlSegment}</where>
+    </select>
+
+    <select id="selectView"
+        resultType="com.entity.ShishijiankongEntity" >
+        SELECT * FROM shishijiankong shishijiankong <where> 1=1 ${ew.sqlSegment}</where>
+    </select>
+
+</mapper>

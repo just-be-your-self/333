@@ -6,13 +6,22 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width,initial-scale=1.0">
 		<link rel="icon" href="<%= BASE_URL %>favicon.ico">
-		<title>危险物品运输管理系统</title>
+		<title>危险品物流管理系统</title>
+		<style>
+			.amap-container, .amap-map { width: 100%; height: 100%; }
+			.amap-marker .marker-content { background: #409EFF; color: #fff; padding: 4px 8px; border-radius: 4px; font-size: 12px; white-space: nowrap; box-shadow: 0 2px 6px rgba(0,0,0,0.3); }
+			.amap-marker .marker-content.warning { background: #E6A23C; }
+			.amap-marker .marker-content.offline { background: #909399; }
+			.amap-info-content { padding: 10px; }
+		</style>
 	</head>
 	<body>
 		<noscript>
 			<strong>We're sorry but mas-creator-admin doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
 		</noscript>
 		<div id="app"></div>
+		<!-- 高德地图 v1.4.15 -->
+		<script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.15&key=e2729ad6d357af19a6882fa4cf277470&plugin=AMap.Scale,AMap.ToolBar,AMap.Geocoder"></script>
 		<!-- built files will be auto injected -->
 	</body>
 </html>

@@ -54,39 +54,53 @@ public class JingbaojiemianEntity<T> implements Serializable {
 	/**
 	 * 标题
 	 */
-					
 	private String biaoti;
-	
+
+	/**
+	 * 警报类型
+	 */
+	private String jingleixing;
+
+	/**
+	 * 车牌号
+	 */
+	private String chepaihao;
+
 	/**
 	 * 电话
 	 */
-					
 	private String dianhua;
-	
+
 	/**
 	 * 警报原因
 	 */
-					
 	private String jingbaoyuanyin;
-	
+
 	/**
 	 * 警报时间
 	 */
-				
 	@JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
-	@DateTimeFormat 		
+	@DateTimeFormat
 	private Date jingbaoshijian;
-	
+
+	/**
+	 * 位置
+	 */
+	private String weizhi;
+
+	/**
+	 * 速度
+	 */
+	private String sudu;
+
 	/**
 	 * 账号
 	 */
-					
 	private String zhanghao;
-	
+
 	/**
 	 * 姓名
 	 */
-					
 	private String xingming;
 	
 	/**
@@ -133,6 +147,30 @@ public class JingbaojiemianEntity<T> implements Serializable {
 		return biaoti;
 	}
 	/**
+	 * 设置：警报类型
+	 */
+	public void setJingleixing(String jingleixing) {
+		this.jingleixing = jingleixing;
+	}
+	/**
+	 * 获取：警报类型
+	 */
+	public String getJingleixing() {
+		return jingleixing;
+	}
+	/**
+	 * 设置：车牌号
+	 */
+	public void setChepaihao(String chepaihao) {
+		this.chepaihao = chepaihao;
+	}
+	/**
+	 * 获取：车牌号
+	 */
+	public String getChepaihao() {
+		return chepaihao;
+	}
+	/**
 	 * 设置：电话
 	 */
 	public void setDianhua(String dianhua) {
@@ -167,6 +205,30 @@ public class JingbaojiemianEntity<T> implements Serializable {
 	 */
 	public Date getJingbaoshijian() {
 		return jingbaoshijian;
+	}
+	/**
+	 * 设置：位置
+	 */
+	public void setWeizhi(String weizhi) {
+		this.weizhi = weizhi;
+	}
+	/**
+	 * 获取：位置
+	 */
+	public String getWeizhi() {
+		return weizhi;
+	}
+	/**
+	 * 设置：速度
+	 */
+	public void setSudu(String sudu) {
+		this.sudu = sudu;
+	}
+	/**
+	 * 获取：速度
+	 */
+	public String getSudu() {
+		return sudu;
 	}
 	/**
 	 * 设置：账号

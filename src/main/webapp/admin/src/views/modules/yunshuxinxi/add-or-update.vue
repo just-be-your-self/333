@@ -113,31 +113,11 @@
 				<el-form-item :style='{"margin":"0 0 20px 0"}' v-else class="input" label="速度" prop="sudu">
 					<el-input v-model="ruleForm.sudu" placeholder="速度" readonly></el-input>
 				</el-form-item>
-				<el-form-item :style='{"margin":"0 0 20px 0"}' class="upload" v-if="type!='info' && !ro.tupian" label="图片" prop="tupian">
-					<file-upload
-						tip="点击上传图片"
-						action="file/upload"
-						:limit="3"
-						:multiple="true"
-						:fileUrls="ruleForm.tupian?ruleForm.tupian:''"
-						@change="tupianUploadChange"
-					></file-upload>
-				</el-form-item>
-				<el-form-item :style='{"margin":"0 0 20px 0"}' class="upload" v-else-if="ruleForm.tupian" label="图片" prop="tupian">
-					<img class="upload-img" style="margin-right:20px;" v-bind:key="index" v-for="(item,index) in ruleForm.tupian.split(',')" :src="$base.url+item" width="100" height="100">
-				</el-form-item>
-				<el-form-item :style='{"margin":"0 0 20px 0"}' class="input" v-if="type!='info'"  label="地址" prop="fulladdress">
-					<el-input @click.native="openMapDiolag"  v-model="ruleForm.fulladdress" placeholder="请选择地址"></el-input>
-				</el-form-item>
-				<el-form-item :style='{"margin":"0 0 20px 0"}' class="input" v-else-if="ruleForm.fulladdress" label="地址" prop="fulladdress">
-					<el-input v-model="ruleForm.fulladdress" placeholder="请选择地址" readonly></el-input>
-				</el-form-item>
-			</template>
 				<el-form-item :style='{"margin":"0 0 20px 0"}' class="textarea" v-if="type!='info'" label="运输路径" prop="yunshulujing">
 					<el-input
 					  style="min-width: 200px; max-width: 600px;"
 					  type="textarea"
-					  :rows="8"
+					  :rows="4"
 					  placeholder="运输路径"
 					  v-model="ruleForm.yunshulujing" >
 					</el-input>
@@ -145,6 +125,7 @@
 				<el-form-item :style='{"margin":"0 0 20px 0"}' v-else-if="ruleForm.yunshulujing" label="运输路径" prop="yunshulujing">
 					<span :style='{"border":"1px solid #5497f2","padding":"0 40px","color":"#bbbbbb","borderRadius":"20px 40px","display":"inline-block","fontSize":"14px","lineHeight":"40px","fontWeight":"500"}'>{{ruleForm.yunshulujing}}</span>
 				</el-form-item>
+			</template>
 			<el-form-item :style='{"padding":"0","margin":"30px 0 0 0"}' class="btn">
 				<el-button :style='{"border":"0","cursor":"pointer","padding":"0","margin":"0 30px 0 0","outline":"none","color":"rgba(255, 255, 255, 1)","borderRadius":"20px 40px","background":"#5497f2","width":"128px","lineHeight":"40px","fontSize":"14px","height":"40px"}'  v-if="type!='info'" type="primary" class="btn-success" @click="onSubmit">提交</el-button>
 				<el-button :style='{"border":"1px solid rgba(64, 158, 255, 1)","cursor":"pointer","padding":"0","margin":"0","outline":"none","color":"rgba(64, 158, 255, 1)","borderRadius":"20px 40px","background":"rgba(255, 255, 255, 1)","width":"128px","lineHeight":"40px","fontSize":"14px","height":"40px"}' v-if="type!='info'" class="btn-close" @click="back()">取消</el-button>
@@ -152,24 +133,7 @@
 			</el-form-item>
 		</el-form>
     
-    <el-dialog
-      width="50%"
-      title="坐标查询"
-      :visible.sync="mapVisiable"
-      append-to-body>
-      <el-amap-search-box class="search-box" :on-search-result="onSearchResult" :search-option="searchOption" ></el-amap-search-box>
-      <div class="amap-wrapper">
-        <el-amap class="amap-box" :vid="'amap-vue'" 
-        :center="center"
-        :zoom="zoom"
-        :events="events" >
-          <el-amap-marker v-bind:key="marker" v-for="marker in markers" :position="marker" ></el-amap-marker>
-        </el-amap>
-      </div>
-      <div>坐标：[{{ ruleForm.longitude }}, {{ ruleForm.latitude }}],地址：{{ruleForm.fulladdress}}</div>
-    </el-dialog>
-
-  </div>
+	</div>
 </template>
 <script>
 // 数字，邮件，手机，url，身份证校验
@@ -269,32 +233,18 @@ export default {
 			},
 			
 			// 地图
-			mapVisiable: false,
+			routeMapVisiable: false,
+			tempRoute: [],
 			zoom: 12,
 			center: [116.410426, 39.934946],
 			markers: [],
 			searchOption: {
 				citylimit: false
 			},
-			events: {
-				click (e) {
+			routeMapEvents: {
+				click: (e) => {
 					let { lng, lat } = e.lnglat
-					self.ruleForm.longitude = lng
-					self.ruleForm.latitude = lat
-					// 这里通过高德 SDK 完成。
-					/* eslint-disable */
-					var geocoder = new AMap.Geocoder({
-						radius: 1000,
-						extensions: 'all'
-					})
-					geocoder.getAddress([lng, lat], function (status, result) {
-						if (status === 'complete' && result.info === 'OK') {
-							if (result && result.regeocode) {
-                                self.mapVisiable = false
-								self.ruleForm.fulladdress = result.regeocode.formattedAddress
-							}
-						}
-					})
+					this.tempRoute.push([lng, lat])
 				}
 			},
 			
@@ -321,7 +271,7 @@ export default {
 				fulladdress: '',
 			},
 		
-			zhuangtaiOptions: [],
+			zhuangtaiOptions: "进行中,已完成".split(','),
 			
 			rules: {
 				yunshucheci: [
@@ -381,27 +331,21 @@ export default {
 		this.ruleForm.jieshushijian = this.getCurDateTime()
 	},
 	methods: {
-		// 打开坐标定位窗口
-		openMapDiolag () {
-			this.mapVisiable = true
-		},
-		// 查询
-		onSearchResult (pois) {
-			let latSum = 0;
-			let lngSum = 0;
-			if (pois.length > 0) {
-				pois.forEach(poi => {
-					let {lng, lat} = poi;
-					lngSum += lng;
-					latSum += lat;
-					this.markers.push([poi.lng, poi.lat]);
-				});
-				let center = {
-					lng: lngSum / pois.length,
-					lat: latSum / pois.length
-				};
-				this.center = [center.lng, center.lat];
+		openRouteMap() {
+			this.routeMapVisiable = true;
+			if (this.ruleForm.yunshulujing) {
+				try {
+					this.tempRoute = JSON.parse(this.ruleForm.yunshulujing);
+				} catch (e) {
+					this.tempRoute = [];
+				}
+			} else {
+				this.tempRoute = [];
 			}
+		},
+		saveRoute() {
+			this.ruleForm.yunshulujing = JSON.stringify(this.tempRoute);
+			this.routeMapVisiable = false;
 		},
 		
 		// 下载
@@ -569,7 +513,7 @@ export default {
 				}
 			});
 			
-            this.zhuangtaiOptions = "运输完成".split(',')
+            this.zhuangtaiOptions = "进行中,已完成".split(',')
 			
 		},
     // 多级联动参数
@@ -775,7 +719,7 @@ var objcross = this.$storage.getObj('crossObj');
 		width: auto;
 	}
 	
-	.add-update-preview .el-form-item /deep/ .el-form-item__label {
+	.add-update-preview .el-form-item ::v-deep .el-form-item__label {
 	  	  padding: 0 10px 0 0;
 	  	  color: #666;
 	  	  font-weight: 500;
@@ -785,11 +729,11 @@ var objcross = this.$storage.getObj('crossObj');
 	  	  text-align: right;
 	  	}
 	
-	.add-update-preview .el-form-item /deep/ .el-form-item__content {
+	.add-update-preview .el-form-item ::v-deep .el-form-item__content {
 	  margin-left: 80px;
 	}
 	
-	.add-update-preview .el-input /deep/ .el-input__inner {
+	.add-update-preview .el-input ::v-deep .el-input__inner {
 	  	  border: 1px solid #5497f2;
 	  	  border-radius: 20px 40px;
 	  	  padding: 0 12px;
@@ -801,7 +745,7 @@ var objcross = this.$storage.getObj('crossObj');
 	  	  height: 40px;
 	  	}
 	
-	.add-update-preview .el-select /deep/ .el-input__inner {
+	.add-update-preview .el-select ::v-deep .el-input__inner {
 	  	  border: 1px solid #5497f2;
 	  	  border-radius: 20px 40px;
 	  	  padding: 0 10px;
@@ -813,7 +757,7 @@ var objcross = this.$storage.getObj('crossObj');
 	  	  height: 40px;
 	  	}
 	
-	.add-update-preview .el-date-editor /deep/ .el-input__inner {
+	.add-update-preview .el-date-editor ::v-deep .el-input__inner {
 	  	  border: 1px solid #5497f2;
 	  	  border-radius: 20px 40px;
 	  	  padding: 0 10px 0 30px;
@@ -825,7 +769,7 @@ var objcross = this.$storage.getObj('crossObj');
 	  	  height: 40px;
 	  	}
 	
-	.add-update-preview /deep/ .el-upload--picture-card {
+	.add-update-preview ::v-deep .el-upload--picture-card {
 		background: transparent;
 		border: 0;
 		border-radius: 0;
@@ -835,7 +779,7 @@ var objcross = this.$storage.getObj('crossObj');
 		vertical-align: middle;
 	}
 	
-	.add-update-preview /deep/ .upload .upload-img {
+	.add-update-preview ::v-deep .upload .upload-img {
 	  	  border: 1px dashed rgba(64, 158, 255, 1);
 	  	  cursor: pointer;
 	  	  border-radius: 20px 40px;
@@ -847,7 +791,7 @@ var objcross = this.$storage.getObj('crossObj');
 	  	  height: 100px;
 	  	}
 	
-	.add-update-preview /deep/ .el-upload-list .el-upload-list__item {
+	.add-update-preview ::v-deep .el-upload-list .el-upload-list__item {
 	  	  border: 1px dashed rgba(64, 158, 255, 1);
 	  	  cursor: pointer;
 	  	  border-radius: 20px 40px;
@@ -859,7 +803,7 @@ var objcross = this.$storage.getObj('crossObj');
 	  	  height: 100px;
 	  	}
 	
-	.add-update-preview /deep/ .el-upload .el-icon-plus {
+	.add-update-preview ::v-deep .el-upload .el-icon-plus {
 	  	  border: 1px dashed rgba(64, 158, 255, 1);
 	  	  cursor: pointer;
 	  	  border-radius: 20px 40px;
@@ -871,7 +815,7 @@ var objcross = this.$storage.getObj('crossObj');
 	  	  height: 100px;
 	  	}
 	
-	.add-update-preview .el-textarea /deep/ .el-textarea__inner {
+	.add-update-preview .el-textarea ::v-deep .el-textarea__inner {
 	  	  border: 1px solid #5497f2;
 	  	  border-radius: 20px 40px;
 	  	  padding: 12px;

@@ -16,6 +16,7 @@ import center from '@/views/center'
     import jiashiyuan from '@/views/modules/jiashiyuan/list'
     import jingbaojiemian from '@/views/modules/jingbaojiemian/list'
     import cheliangxinxi from '@/views/modules/cheliangxinxi/list'
+    import shishijiankong from '@/views/modules/shishijiankong/index'
     import weixianpinxinxi from '@/views/modules/weixianpinxinxi/list'
     import yingjiyuan from '@/views/modules/yingjiyuan/list'
 
@@ -71,6 +72,11 @@ const routes = [{
 	path: '/cheliangxinxi',
         name: '车辆信息',
         component: cheliangxinxi
+      }
+      ,{
+	path: '/shishijiankong',
+        name: '实时监控',
+        component: shishijiankong
       }
       ,{
 	path: '/weixianpinxinxi',
