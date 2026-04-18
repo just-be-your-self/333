@@ -31,6 +31,21 @@ public class UsersEntity implements Serializable {
 	 * 用户类型
 	 */
 	private String role;
+
+	/**
+	 * 姓名
+	 */
+	private String xingming;
+
+	/**
+	 * 手机号
+	 */
+	private String shouji;
+
+	/**
+	 * 头像
+	 */
+	private String touxiang;
 	
 	private Date addtime;
 
@@ -56,6 +71,30 @@ public class UsersEntity implements Serializable {
 
 	public void setRole(String role) {
 		this.role = role;
+	}
+
+	public String getXingming() {
+		return xingming;
+	}
+
+	public void setXingming(String xingming) {
+		this.xingming = xingming;
+	}
+
+	public String getShouji() {
+		return shouji;
+	}
+
+	public void setShouji(String shouji) {
+		this.shouji = shouji;
+	}
+
+	public String getTouxiang() {
+		return touxiang;
+	}
+
+	public void setTouxiang(String touxiang) {
+		this.touxiang = touxiang;
 	}
 
 	public Date getAddtime() {

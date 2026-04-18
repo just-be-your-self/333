@@ -188,6 +188,7 @@ export default {
       startMarker: null,
       endMarker: null,
       geocoder: null,
+      driving: null,
       isSimulating: false,
       isArrived: false,
       simulationTimer: null,
@@ -244,6 +245,10 @@ export default {
   },
   beforeDestroy() {
     this.stopSimulation()
+    if (this.driving) {
+      this.driving.clear()
+      this.driving = null
+    }
     if (this.map) {
       this.map.destroy()
     }
@@ -549,16 +554,22 @@ export default {
     planRoute() {
       const AMapObj = window.AMap || AMap
 
+      if (this.driving) {
+        this.driving.clear()
+        this.driving = null
+      }
+
       // 加载驾车路径规划插件
       AMapObj.plugin('AMap.Driving', () => {
-        const driving = new AMapObj.Driving({
-          map: this.map,
-          panel: null,
+        this.driving = new AMapObj.Driving({
           policy: AMapObj.DrivingPolicy.LEAST_TIME,
-          showMarkers: false
+          showMarkers: false,
+          hideMarkers: true,
+          showTraffic: false,
+          autoFitView: false
         })
 
-        driving.search(
+        this.driving.search(
           new AMapObj.LngLat(this.startLng, this.startLat),
           new AMapObj.LngLat(this.endLng, this.endLat),
           (status, result) => {
@@ -947,9 +958,9 @@ export default {
       this.currentSpeed = baseSpeed
     },
 
-    // 检测预警（一次模拟最多一条）
+    // 检测预警（一次模拟过程保证触发一次）
     checkWarnings() {
-      // 整个模拟过程只有一次预警机会
+      // 已触发过则不再触发
       if (this.hasWarningTriggered) {
         this.deviationDistance = Math.max(0, this.deviationDistance - 0.02)
         if (this.deviationDistance < 0.3) {
@@ -961,45 +972,31 @@ export default {
         return
       }
 
-      // 模拟过程中只有1%概率产生一条预警
-      if (Math.random() > 0.99) {
+      // 在模拟进度达到约30%时，固定触发一次超速预警
+      if (this.progressPercent >= 30) {
         this.hasWarningTriggered = true
 
-        // 随机选择超速或偏离
-        if (Math.random() > 0.5) {
-          // 超速预警
-          this.currentSpeed = 85 + Math.floor(Math.random() * 10)
-          this.speedWarning = true
-          this.vehicleWarnings[this.selectedVehicle.id] = {
-            ...this.vehicleWarnings[this.selectedVehicle.id],
-            speed: true
-          }
-
-          const warning = {
-            type: 'danger',
-            time: new Date().toLocaleTimeString(),
-            message: `[超速] ${this.selectedVehicle.chepaihao} 速度${this.currentSpeed}km/h超过限速${this.speedLimit}km/h`
-          }
-          this.warningList.unshift(warning)
-          this.saveWarningToDb(warning)
-
-        } else {
-          // 偏离预警
-          this.deviationDistance = 0.5 + Math.random() * 0.3
-          this.deviationWarning = true
-          this.vehicleWarnings[this.selectedVehicle.id] = {
-            ...this.vehicleWarnings[this.selectedVehicle.id],
-            deviation: true
-          }
-
-          const warning = {
-            type: 'warning',
-            time: new Date().toLocaleTimeString(),
-            message: `[偏离] ${this.selectedVehicle.chepaihao} 偏离路线${this.deviationDistance.toFixed(2)}km`
-          }
-          this.warningList.unshift(warning)
-          this.saveWarningToDb(warning)
+        // 超速预警
+        this.currentSpeed = this.speedLimit + 8 + Math.floor(Math.random() * 8)
+        this.speedWarning = true
+        this.vehicleWarnings[this.selectedVehicle.id] = {
+          ...this.vehicleWarnings[this.selectedVehicle.id],
+          speed: true
         }
+
+        const warning = {
+          type: 'danger',
+          time: new Date().toLocaleTimeString(),
+          message: `[超速] ${this.selectedVehicle.chepaihao} 速度${this.currentSpeed}km/h超过限速${this.speedLimit}km/h`
+        }
+        this.warningList.unshift(warning)
+
+        this.$alert(warning.message, '预警提示', {
+          confirmButtonText: '确定',
+          type: 'warning'
+        })
+
+        this.saveWarningToDb(warning)
       }
     },
 

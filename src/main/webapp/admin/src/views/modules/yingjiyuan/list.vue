@@ -207,7 +207,7 @@ export default {
             params['xingming'] = '%' + this.searchForm.xingming + '%'
           }
       this.$http({
-        url: "yingjiyuan/page",
+        url: "yingjiyuan/list",
         method: "get",
         params: params
       }).then(({ data }) => {

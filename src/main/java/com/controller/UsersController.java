@@ -69,6 +69,7 @@ public class UsersController{
     	if(userService.selectOne(new EntityWrapper<UsersEntity>().eq("username", user.getUsername())) !=null) {
     		return R.error("用户已存在");
     	}
+    	user.setRole("管理员");
         userService.insert(user);
         return R.ok();
     }
@@ -145,6 +146,7 @@ public class UsersController{
     	if(userService.selectOne(new EntityWrapper<UsersEntity>().eq("username", user.getUsername())) !=null) {
     		return R.error("用户已存在");
     	}
+    	user.setRole("管理员");
         userService.insert(user);
         return R.ok();
     }

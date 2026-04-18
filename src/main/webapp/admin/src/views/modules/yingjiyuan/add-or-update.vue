@@ -58,13 +58,14 @@
 				<el-form-item :style='{"margin":"0 0 20px 0"}' v-else-if="ruleForm.fanganjianjie" label="方案简介" prop="fanganjianjie">
 					<span :style='{"border":"1px solid #5497f2","padding":"0 40px","color":"#bbbbbb","borderRadius":"20px 40px","display":"inline-block","fontSize":"14px","lineHeight":"40px","fontWeight":"500"}'>{{ruleForm.fanganjianjie}}</span>
 				</el-form-item>
-				<el-form-item :style='{"margin":"0 0 20px 0"}' v-if="type!='info'"  label="方案内容" prop="fanganneirong">
-					<editor 
-						style="min-width: 200px; max-width: 600px;"
-						v-model="ruleForm.fanganneirong" 
-						class="editor" 
-						action="file/upload">
-					</editor>
+				<el-form-item :style='{"margin":"0 0 20px 0"}' class="textarea" v-if="type!='info'"  label="方案内容" prop="fanganneirong">
+					<el-input
+					  style="min-width: 200px; max-width: 600px;"
+					  type="textarea"
+					  :rows="10"
+					  placeholder="方案内容"
+					  v-model="ruleForm.fanganneirong" >
+					</el-input>
 				</el-form-item>
 				<el-form-item :style='{"margin":"0 0 20px 0"}' v-else-if="ruleForm.fanganneirong" label="方案内容" prop="fanganneirong">
                     <span :style='{"border":"1px solid #5497f2","padding":"0 40px","color":"#bbbbbb","borderRadius":"20px 40px","display":"inline-block","fontSize":"14px","lineHeight":"40px","fontWeight":"500"}' v-html="ruleForm.fanganneirong"></span>

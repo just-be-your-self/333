@@ -21,12 +21,6 @@
 				<el-form-item :style='{"margin":"0 0 20px 0"}' v-else class="input" label="车辆品牌" prop="cheliangpinpai">
 					<el-input v-model="ruleForm.cheliangpinpai" placeholder="车辆品牌" readonly></el-input>
 				</el-form-item>
-				<el-form-item :style='{"margin":"0 0 20px 0"}' class="input" v-if="type!='info'"  label="危险品类型" prop="weixianpinleixing">
-					<el-input v-model="ruleForm.weixianpinleixing" placeholder="危险品类型" clearable  :readonly="ro.weixianpinleixing"></el-input>
-				</el-form-item>
-				<el-form-item :style='{"margin":"0 0 20px 0"}' v-else class="input" label="危险品类型" prop="weixianpinleixing">
-					<el-input v-model="ruleForm.weixianpinleixing" placeholder="危险品类型" readonly></el-input>
-				</el-form-item>
 				<el-form-item :style='{"margin":"0 0 20px 0"}' class="input" v-if="type!='info'"  label="颜色" prop="yanse">
 					<el-input v-model="ruleForm.yanse" placeholder="颜色" clearable  :readonly="ro.yanse"></el-input>
 				</el-form-item>
@@ -74,13 +68,14 @@
 					<el-input v-model="ruleForm.dengjiriqi" placeholder="登记日期" readonly></el-input>
 				</el-form-item>
 			</template>
-				<el-form-item :style='{"margin":"0 0 20px 0"}' v-if="type!='info'"  label="车辆详情" prop="cheliangxiangqing">
-					<editor 
-						style="min-width: 200px; max-width: 600px;"
-						v-model="ruleForm.cheliangxiangqing" 
-						class="editor" 
-						action="file/upload">
-					</editor>
+				<el-form-item :style='{"margin":"0 0 20px 0"}' class="textarea" v-if="type!='info'"  label="车辆详情" prop="cheliangxiangqing">
+					<el-input
+					  style="min-width: 200px; max-width: 600px;"
+					  type="textarea"
+					  :rows="8"
+					  placeholder="车辆详情"
+					  v-model="ruleForm.cheliangxiangqing">
+					</el-input>
 				</el-form-item>
 				<el-form-item :style='{"margin":"0 0 20px 0"}' v-else-if="ruleForm.cheliangxiangqing" label="车辆详情" prop="cheliangxiangqing">
                     <span :style='{"border":"1px solid #5497f2","padding":"0 40px","color":"#bbbbbb","borderRadius":"20px 40px","display":"inline-block","fontSize":"14px","lineHeight":"40px","fontWeight":"500"}' v-html="ruleForm.cheliangxiangqing"></span>
@@ -172,7 +167,6 @@ export default {
 			ro:{
 				chepaihao : false,
 				cheliangpinpai : false,
-				weixianpinleixing : false,
 				yanse : false,
 				huandangfangshi : false,
 				cheliangzhaopian : false,
@@ -184,7 +178,6 @@ export default {
 			ruleForm: {
 				chepaihao: '',
 				cheliangpinpai: '',
-				weixianpinleixing: '',
 				yanse: '',
 				huandangfangshi: '',
 				cheliangzhaopian: '',
@@ -200,8 +193,6 @@ export default {
 				],
 				cheliangpinpai: [
 					{ required: true, message: '车辆品牌不能为空', trigger: 'blur' },
-				],
-				weixianpinleixing: [
 				],
 				yanse: [
 				],

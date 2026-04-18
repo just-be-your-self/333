@@ -91,23 +91,43 @@ export default {
                 var option = {};
                 option = {
                     title: {
-                        text: '终点统计',
+                        text: '按终点统计运输数量',
                         left: 'center'
                     },
                     tooltip: {
-                      trigger: 'item',
-                      formatter: '{b} : {c}'
+                      trigger: 'axis',
+                      axisPointer: {
+                        type: 'shadow'
+                      },
+                      formatter: function(params) {
+                        const item = params[0]
+                        return `终点：${item.name}<br/>运输数量总和：${item.value}`
+                      }
+                    },
+                    grid: {
+                        left: '8%',
+                        right: '5%',
+                        bottom: '20%',
+                        top: '18%',
+                        containLabel: true
                     },
                     xAxis: {
                         type: 'category',
-                        data: xAxis
+                        data: xAxis,
+                        axisLabel: {
+                            interval: 0,
+                            rotate: 25
+                        }
                     },
                     yAxis: {
-                        type: 'value'
+                        type: 'value',
+                        name: '运输数量总和'
                     },
                     series: [{
+                        name: '运输数量总和',
                         data: yAxis,
-                        type: 'bar'
+                        type: 'bar',
+                        barMaxWidth: 50
                     }]
                 };
                 // 使用刚指定的配置项和数据显示图表。

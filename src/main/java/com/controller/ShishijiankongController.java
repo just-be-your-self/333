@@ -29,11 +29,13 @@ import com.annotation.IgnoreAuth;
 
 import com.entity.ShishijiankongEntity;
 import com.entity.view.ShishijiankongView;
+import com.entity.JingbaojiemianEntity;
 
 import com.service.ShishijiankongService;
 import com.service.TokenService;
 import com.service.YunshuxinxiService;
 import com.service.CheliangxinxiService;
+import com.service.JingbaojiemianService;
 import com.utils.PageUtils;
 import com.utils.R;
 import com.utils.MD5Util;
@@ -59,6 +61,9 @@ public class ShishijiankongController {
 
     @Autowired
     private CheliangxinxiService cheliangxinxiService;
+
+    @Autowired
+    private JingbaojiemianService jingbaojiemianService;
 
     /**
      * 获取所有在线车辆列表
@@ -209,8 +214,8 @@ public class ShishijiankongController {
         currentLng += offsetLng;
         currentLat += offsetLat;
         
-        // 模拟速度变化（保持60-80之间）
-        int speedValue = 60 + random.nextInt(21);
+        // 模拟速度变化（60-110，便于触发超速预警）
+        int speedValue = 60 + random.nextInt(51);
         currentSpeed = String.valueOf(speedValue);
         
         Map<String, Object> result = new HashMap<>();
@@ -225,6 +230,7 @@ public class ShishijiankongController {
         result.put("speedWarning", isSpeedWarning);
         if (isSpeedWarning) {
             result.put("warningMessage", "警告：车辆超速！当前速度：" + speedValue + " km/h");
+            saveSpeedWarningRecord(vehicle, chepaihao, speedValue, currentLng, currentLat);
         }
         
         // 如果找到了车辆，同时更新数据库
@@ -403,6 +409,25 @@ public class ShishijiankongController {
         stats.put("warningVehicles", warningCount);
         
         return R.ok().put("data", stats);
+    }
+
+    /**
+     * 保存超速预警记录到警报界面
+     */
+    private void saveSpeedWarningRecord(YunshuxinxiEntity vehicle, String chepaihao, int speedValue, float longitude, float latitude) {
+        JingbaojiemianEntity warning = new JingbaojiemianEntity();
+        warning.setId(new Date().getTime() + new Double(Math.floor(Math.random() * 1000)).longValue());
+        warning.setBiaoti(chepaihao + "超速告警");
+        warning.setJingbaoyuanyin("车辆超速行驶，当前速度" + speedValue + "km/h");
+        warning.setJingbaoshijian(new Date());
+        warning.setSfsh("待审核");
+
+        if (vehicle != null) {
+            warning.setZhanghao(vehicle.getZhanghao());
+            warning.setXingming(vehicle.getXingming());
+        }
+
+        jingbaojiemianService.insert(warning);
     }
 
     /**

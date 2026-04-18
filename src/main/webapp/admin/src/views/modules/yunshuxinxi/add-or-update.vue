@@ -95,7 +95,7 @@
 				<el-form-item :style='{"margin":"0 0 20px 0"}' class="input" v-else-if="ruleForm.kaishishijian" label="开始时间" prop="kaishishijian">
 					<el-input v-model="ruleForm.kaishishijian" placeholder="开始时间" readonly></el-input>
 				</el-form-item>
-				<el-form-item :style='{"margin":"0 0 20px 0"}' class="date" v-if="type!='info'" label="结束时间" prop="jieshushijian">
+				<el-form-item :style='{"margin":"0 0 20px 0"}' class="date" v-if="type!='info' && ruleForm.zhuangtai === '已完成'" label="结束时间" prop="jieshushijian">
 					<el-date-picker
 						value-format="yyyy-MM-dd HH:mm:ss"
 						v-model="ruleForm.jieshushijian" 
@@ -328,7 +328,6 @@ export default {
 	},
 	created() {
 		this.ruleForm.kaishishijian = this.getCurDateTime()
-		this.ruleForm.jieshushijian = this.getCurDateTime()
 	},
 	methods: {
 		openRouteMap() {
@@ -403,7 +402,6 @@ export default {
 						}
 						if(o=='yunshulujing'){
 							this.ruleForm.yunshulujing = obj[o];
-							this.ro.yunshulujing = true;
 							continue;
 						}
 						if(o=='zhanghao'){
@@ -433,12 +431,10 @@ export default {
 						}
 						if(o=='jieshushijian'){
 							this.ruleForm.jieshushijian = obj[o];
-							this.ro.jieshushijian = true;
 							continue;
 						}
 						if(o=='sudu'){
 							this.ruleForm.sudu = obj[o];
-							this.ro.sudu = true;
 							continue;
 						}
 						if(o=='tupian'){
@@ -475,7 +471,11 @@ export default {
 
 
 
-				this.ruleForm.zhuangtai='运输完成'
+				this.ruleForm.zhuangtai='进行中'
+				this.ruleForm.jieshushijian=''
+				if(!this.ruleForm.sudu){
+					this.ruleForm.sudu = '60'
+				}
 
 
 

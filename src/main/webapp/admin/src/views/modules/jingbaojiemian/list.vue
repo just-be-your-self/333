@@ -408,7 +408,7 @@ export default {
           weizhi: row.weizhi,
           sudu: row.sudu,
           jingbaoshijian: row.jingbaoshijian,
-          sfsh: row.sfsh,
+          sfsh: (!row.sfsh || row.sfsh === '待审核') ? '是' : row.sfsh,
           shhf: row.shhf,
           id: row.id
         }

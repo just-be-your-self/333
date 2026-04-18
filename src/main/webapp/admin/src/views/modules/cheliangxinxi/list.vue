@@ -12,10 +12,6 @@
 						<label :style='{"margin":"0 10px 0 0","color":"#666","display":"inline-block","lineHeight":"40px","fontSize":"14px","fontWeight":"500","height":"40px"}' class="item-label">车辆品牌</label>
 						<el-input v-model="searchForm.cheliangpinpai" placeholder="车辆品牌" clearable></el-input>
 					</div>
-					<div :style='{"margin":"0 10px 0 0","display":"inline-block"}'>
-						<label :style='{"margin":"0 10px 0 0","color":"#666","display":"inline-block","lineHeight":"40px","fontSize":"14px","fontWeight":"500","height":"40px"}' class="item-label">危险品类型</label>
-						<el-input v-model="searchForm.weixianpinleixing" placeholder="危险品类型" clearable></el-input>
-					</div>
 					<el-button :style='{"border":"0","cursor":"pointer","padding":"0 40px","outline":"none","color":"#fff","borderRadius":"20px 40px","background":"#333","width":"auto","fontSize":"14px","height":"40px"}' type="success" @click="search()">查询</el-button>
 				</el-row>
 
@@ -51,13 +47,6 @@
 					label="车辆品牌">
 						<template slot-scope="scope">
 							{{scope.row.cheliangpinpai}}
-						</template>
-					</el-table-column>
-					<el-table-column :resizable='true' :sortable='false'  
-						prop="weixianpinleixing"
-					label="危险品类型">
-						<template slot-scope="scope">
-							{{scope.row.weixianpinleixing}}
 						</template>
 					</el-table-column>
 					<el-table-column :resizable='true' :sortable='false'  
@@ -225,9 +214,6 @@ export default {
           }
           if(this.searchForm.cheliangpinpai!='' && this.searchForm.cheliangpinpai!=undefined){
             params['cheliangpinpai'] = '%' + this.searchForm.cheliangpinpai + '%'
-          }
-          if(this.searchForm.weixianpinleixing!='' && this.searchForm.weixianpinleixing!=undefined){
-            params['weixianpinleixing'] = '%' + this.searchForm.weixianpinleixing + '%'
           }
       this.$http({
         url: "cheliangxinxi/page",

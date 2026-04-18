@@ -145,9 +145,9 @@
 					</el-table-column>
 					<el-table-column :resizable='true' :sortable='false' prop="tupian" width="200" label="图片">
 						<template slot-scope="scope">
-							<div v-if="scope.row.tupian">
-								<img v-if="scope.row.tupian.substring(0,4)=='http'" :src="scope.row.tupian.split(',')[0]" width="100" height="100">
-								<img v-else :src="$base.url+scope.row.tupian.split(',')[0]" width="100" height="100">
+							<div v-if="(scope.row.vehiclePhoto || scope.row.tupian)">
+								<img v-if="(scope.row.vehiclePhoto || scope.row.tupian).substring(0,4)=='http'" :src="(scope.row.vehiclePhoto || scope.row.tupian).split(',')[0]" width="100" height="100">
+								<img v-else :src="$base.url+(scope.row.vehiclePhoto || scope.row.tupian).split(',')[0]" width="100" height="100">
 							</div>
 							<div v-else>无图片</div>
 						</template>
@@ -156,7 +156,7 @@
 						prop="fulladdress"
 					label="地址">
 						<template slot-scope="scope">
-							{{scope.row.fulladdress}}
+							{{scope.row.zhuangtai === '已完成' ? scope.row.zhongdian : ''}}
 						</template>
 					</el-table-column>
 					<el-table-column width="300" label="操作">
@@ -441,6 +441,19 @@ export default {
         if (data && data.code === 0) {
           this.dataList = data.data.list;
           this.totalPage = data.data.total;
+          this.dataList.forEach(item => {
+            this.$set(item, 'vehiclePhoto', '');
+            if(item.chepaihao){
+              this.$http({
+                url: `follow/cheliangxinxi/chepaihao?columnValue=` + item.chepaihao,
+                method: 'get'
+              }).then(({ data: vehicleData }) => {
+                if (vehicleData && vehicleData.code === 0 && vehicleData.data) {
+                  this.$set(item, 'vehiclePhoto', vehicleData.data.cheliangzhaopian || '');
+                }
+              });
+            }
+          })
         } else {
           this.dataList = [];
           this.totalPage = 0;
